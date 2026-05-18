@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-light: #E6F4F7; /* Pilgrim Light Sky Blue */
+  --color-brand-dark: #1F5B6E; /* Pilgrim Dark Teal */
+  --color-brand-blue: #2a768f; /* Pilgrim Mid Teal */
+  --color-brand-blue-hover: #1F5B6E;
+  --color-brand-accent: #EBC012; /* Pilgrim Action Yellow */
+  --color-brand-accent-hover: #d9ad0b;
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+@layer utilities {
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .section-gutter {
+    margin-left: 1rem;
+    margin-right: 0;
+  }
+  @media (min-width: 768px) {
+    .section-gutter {
+      margin-left: 4rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-gutter {
+      margin-left: 6rem;
+    }
+  }
+}
+

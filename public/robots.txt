@@ -1,0 +1,8 @@
+# Shoe Place Herbal - Robots.txt
+User-agent: *
+Allow: /
+Disallow: /portal-secure-entry/
+Disallow: /api/
+Disallow: /cancel-order/
+
+Sitemap: https://Shoe Placeherbal.com/sitemap.xml
