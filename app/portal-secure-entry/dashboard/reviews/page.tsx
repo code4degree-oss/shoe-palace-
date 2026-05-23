@@ -79,7 +79,7 @@ export default function ReviewsPage() {
           <button
             key={tab}
             onClick={() => setFilter(tab as any)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium capitalize transition-all ${filter === tab
+            className={`px-4 py-2 rounded-none text-sm font-medium capitalize transition-all ${filter === tab
                 ? 'bg-white shadow-sm border border-gray-200 text-gray-900'
                 : 'text-gray-500 hover:text-gray-700 hover:bg-white/50'
               }`}
@@ -92,7 +92,7 @@ export default function ReviewsPage() {
       {/* Reviews List */}
       <div className="space-y-4">
         {filteredReviews.map((review) => (
-          <div key={review.id} className={`bg-white rounded-xl shadow-sm border p-5 ${review.featured ? 'border-brand-accent' : 'border-gray-100'}`}>
+          <div key={review.id} className={`bg-white rounded-none shadow-sm border p-5 ${review.featured ? 'border-brand-black' : 'border-gray-100'}`}>
             <div className="flex flex-col md:flex-row items-start justify-between gap-4">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -104,7 +104,7 @@ export default function ReviewsPage() {
                 </div>
                 <div className="flex items-center gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill={i < review.rating ? 'currentColor' : 'none'} className={i < review.rating ? 'text-brand-accent' : 'text-gray-200'} />
+                    <Star key={i} size={14} fill={i < review.rating ? 'currentColor' : 'none'} className={i < review.rating ? 'text-brand-black' : 'text-gray-200'} />
                   ))}
                 </div>
                 <p className="text-sm text-gray-600 mb-4">{review.text}</p>
@@ -125,14 +125,14 @@ export default function ReviewsPage() {
                   {review.approved ? (
                     <button
                       onClick={() => toggleApproval(review.id, false)}
-                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-green-100 text-green-700 hover:bg-green-200 rounded-lg text-xs font-medium transition-colors"
+                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-green-100 text-green-700 hover:bg-green-200 rounded-none text-xs font-medium transition-colors"
                     >
                       <CheckCircle2 size={14} /> Approved
                     </button>
                   ) : (
                     <button
                       onClick={() => toggleApproval(review.id, true)}
-                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-lg text-xs font-medium transition-colors border border-gray-200"
+                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-none text-xs font-medium transition-colors border border-gray-200"
                     >
                       Approve
                     </button>
@@ -143,14 +143,14 @@ export default function ReviewsPage() {
                   {review.featured ? (
                     <button
                       onClick={() => toggleFeatured(review.id, false)}
-                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-brand-accent/20 text-brand-dark hover:bg-brand-accent/30 rounded-lg text-xs font-bold transition-colors"
+                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-brand-black/20 text-brand-dark hover:bg-brand-black/30 rounded-none text-xs font-bold transition-colors"
                     >
                       <Star size={14} fill="currentColor" /> Featured
                     </button>
                   ) : (
                     <button
                       onClick={() => toggleFeatured(review.id, true)}
-                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-gray-100 text-gray-600 hover:bg-brand-accent/10 hover:text-brand-dark rounded-lg text-xs font-medium transition-colors border border-gray-200"
+                      className="flex-1 justify-center flex items-center gap-1.5 px-3 py-2 bg-gray-100 text-gray-600 hover:bg-brand-black/10 hover:text-brand-dark rounded-none text-xs font-medium transition-colors border border-gray-200"
                       disabled={!review.approved}
                       title={!review.approved ? "Must be approved first" : ""}
                     >
@@ -164,7 +164,7 @@ export default function ReviewsPage() {
         ))}
 
         {filteredReviews.length === 0 && (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 py-16 text-center text-gray-400">
+          <div className="bg-white rounded-none shadow-sm border border-gray-100 py-16 text-center text-gray-400">
             <Filter size={40} className="mx-auto mb-3 opacity-30" />
             <p className="text-sm">No reviews found</p>
           </div>

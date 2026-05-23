@@ -19,9 +19,9 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       if (!existingOrder) return NextResponse.json({ error: 'Order not found' }, { status: 404 });
       
       const orderAgeMs = Date.now() - new Date(existingOrder.createdAt).getTime();
-      const fourHoursMs = 4 * 60 * 60 * 1000;
-      if (orderAgeMs < fourHoursMs) {
-        return NextResponse.json({ error: 'Order cannot be packed within the 4-hour cancellation window.' }, { status: 400 });
+      const twelveHoursMs = 12 * 60 * 60 * 1000;
+      if (orderAgeMs < twelveHoursMs) {
+        return NextResponse.json({ error: 'Order cannot be packed within the 12-hour cancellation window.' }, { status: 400 });
       }
     }
 

@@ -119,12 +119,12 @@ export default function FAQsPage() {
           <h2 className="text-2xl font-bold text-gray-900">FAQs</h2>
           <p className="text-sm text-gray-500 mt-1">
             Manage the Frequently Asked Questions shown below the reviews.
-            {saving && <span className="ml-2 text-brand-accent font-medium">• Saving...</span>}
+            {saving && <span className="ml-2 text-brand-black font-medium">• Saving...</span>}
           </p>
         </div>
         <button
           onClick={openAddForm}
-          className="flex items-center gap-2 bg-brand-accent text-brand-dark font-bold px-5 py-2.5 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm"
+          className="flex items-center gap-2 bg-brand-black text-brand-dark font-bold px-5 py-2.5 rounded-none hover:bg-brand-black-hover transition-colors text-sm"
         >
           <Plus size={18} />
           Add FAQ
@@ -133,7 +133,7 @@ export default function FAQsPage() {
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={faq.id} className={`bg-white rounded-xl shadow-sm border transition-all ${faq.isActive ? 'border-gray-100' : 'border-gray-200 opacity-60'}`}>
+          <div key={faq.id} className={`bg-white rounded-none shadow-sm border transition-all ${faq.isActive ? 'border-gray-100' : 'border-gray-200 opacity-60'}`}>
             <div className="flex flex-col md:flex-row gap-4 p-5">
               <div className="flex flex-col gap-1 items-center justify-center text-gray-400 shrink-0 border-r border-gray-100 pr-4 hidden md:flex">
                 <button onClick={() => moveFaq(index, 'up')} disabled={index === 0} className="hover:text-blue-500 disabled:opacity-30 disabled:hover:text-gray-400">
@@ -156,10 +156,10 @@ export default function FAQsPage() {
               <div className="flex items-center gap-4 shrink-0 md:flex-col md:items-end md:justify-between border-t border-gray-100 md:border-t-0 pt-4 md:pt-0">
                 <ToggleSwitch isOn={faq.isActive} onToggle={() => toggleActive(faq.id)} label="show" />
                 <div className="flex items-center gap-1">
-                  <button onClick={() => openEditForm(faq)} className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+                  <button onClick={() => openEditForm(faq)} className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-none transition-colors" title="Edit">
                     <Edit2 size={15} />
                   </button>
-                  <button onClick={() => handleDelete(faq.id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+                  <button onClick={() => handleDelete(faq.id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-none transition-colors" title="Delete">
                     <Trash2 size={15} />
                   </button>
                 </div>
@@ -169,7 +169,7 @@ export default function FAQsPage() {
         ))}
 
         {faqs.length === 0 && (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 py-16 text-center text-gray-400">
+          <div className="bg-white rounded-none shadow-sm border border-gray-100 py-16 text-center text-gray-400">
             <MessageCircle size={40} className="mx-auto mb-3 opacity-20" />
             <p className="text-sm font-medium">No FAQs yet</p>
             <p className="text-xs mt-1 text-gray-300">Click &quot;Add FAQ&quot; to create your first question and answer</p>
@@ -179,7 +179,7 @@ export default function FAQsPage() {
 
       {showForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowForm(false)}>
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-xl" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-none shadow-xl w-full max-w-xl" onClick={(e) => e.stopPropagation()}>
             <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
               <h3 className="text-lg font-bold text-gray-900">
                 {editingFaq ? 'Edit FAQ' : 'Add New FAQ'}
@@ -196,7 +196,7 @@ export default function FAQsPage() {
                   value={formData.question} 
                   onChange={(e) => setFormData({ ...formData, question: e.target.value })} 
                   placeholder="e.g. How long does shipping take?" 
-                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30" 
+                  className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30" 
                 />
               </div>
               <div>
@@ -206,7 +206,7 @@ export default function FAQsPage() {
                   onChange={(e) => setFormData({ ...formData, answer: e.target.value })} 
                   placeholder="e.g. Standard shipping takes 3-5 business days across India." 
                   rows={4}
-                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 resize-none" 
+                  className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 resize-none" 
                 />
               </div>
             </div>
@@ -216,7 +216,7 @@ export default function FAQsPage() {
               <button 
                 onClick={handleSave} 
                 disabled={!formData.question.trim() || !formData.answer.trim()}
-                className="px-5 py-2.5 text-sm font-bold bg-brand-accent text-brand-dark rounded-lg hover:bg-brand-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-5 py-2.5 text-sm font-bold bg-brand-black text-brand-dark rounded-none hover:bg-brand-black-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {editingFaq ? 'Save Changes' : 'Add FAQ'}
               </button>

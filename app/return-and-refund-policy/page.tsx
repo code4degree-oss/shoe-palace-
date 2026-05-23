@@ -1,17 +1,17 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Return & Refund Policy | Shoe Place Herbal Products',
-  description: 'Return and Refund Policy of Shoe Place Herbal Products.',
+  title: 'Return & Refund Policy | Shoe Place',
+  description: 'Return and Refund Policy of Shoe Place.',
 };
 
 export default function ReturnRefundPolicy() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8 font-sans text-gray-800">
-      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Return & Refund Policy – Shoe Place Herbal Products</h1>
+      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Return & Refund Policy – Shoe Place</h1>
       
       <div className="space-y-6">
-        <p>At Shoe Place Herbal Products, customer satisfaction is important to us. Please read our return and refund guidelines carefully.</p>
+        <p>At Shoe Place, customer satisfaction is important to us. Please read our return and refund guidelines carefully.</p>
 
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Return Eligibility</h2>
         <p>Returns or replacement requests are accepted only in the following cases:</p>
@@ -59,7 +59,7 @@ export default function ReturnRefundPolicy() {
 
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Contact Information</h2>
         <div className="bg-brand-light/20 p-6 rounded-lg mt-4 border border-brand-light">
-          <p><strong>Email:</strong> <a href="mailto:Shoe Placeherbalproducts@gmail.com" className="text-brand-blue hover:underline">Shoe Placeherbalproducts@gmail.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:support@shoeplace.com" className="text-brand-blue hover:underline">support@shoeplace.com</a></p>
           <p><strong>Phone:</strong> 7447201252 / 9270201252</p>
         </div>
       </div>

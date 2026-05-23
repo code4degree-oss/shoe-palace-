@@ -184,7 +184,7 @@ export default function CheckoutPage() {
         amount: data.amount,
         currency: data.currency,
         name: 'Shoe Place',
-        description: 'Herbal Hair Oils Purchase',
+        description: 'Shoe Place Order',
         order_id: data.order_id,
         handler: async function (response: any) {
           // 4. Verify Payment on backend — order is created ONLY after this succeeds

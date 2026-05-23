@@ -81,7 +81,7 @@ export default function CancelOrderPage({ params }: { params: Promise<{ id: stri
   }
 
   const orderAgeMs = Date.now() - new Date(order.createdAt).getTime();
-  const isCancellable = order.status === 'NEW' && orderAgeMs < 4 * 60 * 60 * 1000;
+  const isCancellable = order.status === 'NEW' && orderAgeMs < 12 * 60 * 60 * 1000;
 
   if (!isCancellable) {
     return (
@@ -92,7 +92,7 @@ export default function CancelOrderPage({ params }: { params: Promise<{ id: stri
           <p className="text-gray-600 mb-6">
             {order.status === 'CANCELLED' 
               ? 'This order has already been cancelled.' 
-              : 'Orders can only be cancelled within 4 hours of placement and must not be processed yet.'}
+              : 'Orders can only be cancelled within 12 hours of placement and must not be processed yet.'}
           </p>
           <Link href="/account" className="inline-block w-full py-3 bg-gray-100 text-gray-800 font-bold rounded-md hover:bg-gray-200 transition-colors">
             Return to My Orders

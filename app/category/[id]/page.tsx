@@ -17,10 +17,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ id: s
     <div className="min-h-screen bg-brand-light flex flex-col antialiased">
       <Header />
 
-      <main className="flex-1 pt-20">
+      <main className="flex-1">
         {/* Category Header */}
         <div className="bg-white border-b border-brand-dark/5 px-4 md:px-16 lg:px-24 py-6 md:py-8">
-          <Link href="/" className="inline-flex items-center text-sm font-medium text-brand-dark/50 hover:text-brand-accent transition-colors mb-4">
+          <Link href="/" className="inline-flex items-center text-sm font-medium text-brand-steel hover:text-brand-black transition-colors mb-4">
             <ArrowLeft size={16} className="mr-1.5" />
             Back to Home
           </Link>
@@ -37,7 +37,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ id: s
           {products.length === 0 && (
             <div className="text-center py-20 text-brand-dark/40">
               <p className="text-lg">No products in this category yet</p>
-              <Link href="/" className="text-brand-accent font-medium hover:underline mt-2 inline-block">
+              <Link href="/" className="text-brand-black font-medium hover:underline mt-2 inline-block">
                 Browse all products
               </Link>
             </div>

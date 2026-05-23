@@ -50,6 +50,8 @@ model Product {
   updatedAt          DateTime @updatedAt
   howToUse           String?  @db.Text
   ingredients        String?  @db.Text
+  colorImages        Json?    @default("{}") // Map of color to array of image URLs
+  variantPrices      Json?    @default("[]") // Array of { color, size, price, salePrice, stock }
 
   orderItems    OrderItem[]
   comboProducts ComboProduct[]
@@ -174,7 +176,7 @@ model Review {
   phone      String   // Reviewer phone
   rating     Int      // 1-5
   text       String
-  image      String?  // Optional uploaded image URL
+  images     String[] @default([]) // Array of uploaded image URLs
   approved   Boolean  @default(false)  // Only approved reviews show on site
   featured   Boolean  @default(false)  // Show on main page
   createdAt  DateTime @default(now())

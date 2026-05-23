@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { productId, customerId, name, phone, rating, text, image } = body;
+    const { productId, customerId, name, phone, rating, text, images } = body;
 
     if (!productId || !name || !phone || !rating || !text) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
         phone,
         rating: parseInt(rating),
         text,
-        image: image || null,
+        images: Array.isArray(images) ? images : (images ? [images] : []),
         approved: false, // Reviews require admin approval
         featured: false,
       }

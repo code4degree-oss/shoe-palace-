@@ -5,7 +5,7 @@
 export const INDIA_POST_CONFIG = {
   // ─── Sender Details (Same for all shipments) ─────────────────
   sender: {
-    name: 'Shoe Place Herbal Products',
+    name: 'Shoe Place',
     mobileNo: '9270201252',
     city: 'Narayangaon',
     stateUT: 'Narayangaon',

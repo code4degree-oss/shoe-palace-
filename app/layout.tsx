@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter, Oswald } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/Providers';
 
@@ -8,22 +8,23 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const playfair = Playfair_Display({
+const oswald = Oswald({
   subsets: ['latin'],
   variable: '--font-playfair',
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shoeplace.com'),
-  title: 'Shoe Place | Premium Footwear Store',
-  description: 'Discover premium running shoes, casual sneakers, and stylish footwear at Shoe Place. Quality shoes for every occasion.',
+  title: 'Shoe Place | Premium Footwear',
+  description: 'Performance meets style. Discover premium running shoes, casual sneakers, and athletic footwear at Shoe Place.',
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',
   },
   openGraph: {
-    title: 'Shoe Place | Premium Footwear Store',
-    description: 'Discover premium running shoes, casual sneakers, and stylish footwear at Shoe Place.',
+    title: 'Shoe Place | Premium Footwear',
+    description: 'Performance meets style. Premium running shoes and athletic footwear.',
     url: 'https://shoeplace.com',
     siteName: 'Shoe Place',
     images: [
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
         url: '/images/hero-bg.jpg',
         width: 1200,
         height: 630,
-        alt: 'Shoe Place Premium Footwear',
+        alt: 'Shoe Place — Premium Footwear',
       },
     ],
     locale: 'en_IN',
@@ -39,15 +40,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shoe Place | Premium Footwear Store',
-    description: 'Discover premium running shoes, casual sneakers, and stylish footwear at Shoe Place.',
+    title: 'Shoe Place | Premium Footwear',
+    description: 'Performance meets style. Premium running shoes and athletic footwear.',
   },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`} suppressHydrationWarning>
-      <body className="font-sans antialiased bg-brand-light text-brand-dark" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${oswald.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-brand-light text-brand-dark overflow-x-hidden" suppressHydrationWarning>
         <Providers>
           {children}
         </Providers>

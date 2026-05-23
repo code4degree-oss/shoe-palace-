@@ -30,11 +30,11 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
       return NextResponse.json({ error: 'Only NEW orders can be cancelled' }, { status: 400 });
     }
 
-    const orderAgeMs = Date.now() - new Date(order.createdAt).getTime();
-    const fourHoursMs = 4 * 60 * 60 * 1000;
-
-    if (orderAgeMs > fourHoursMs) {
-      return NextResponse.json({ error: 'Orders can only be cancelled within 4 hours of placement.' }, { status: 400 });
+    const orderDate = new Date(order.createdAt);
+    // Check time limit (12 hours)
+    const twelveHoursMs = 12 * 60 * 60 * 1000;
+    if (Date.now() - orderDate.getTime() > twelveHoursMs) {
+      return NextResponse.json({ error: 'Orders can only be cancelled within 12 hours.' }, { status: 400 });
     }
 
     const updatedOrder = await prisma.order.update({

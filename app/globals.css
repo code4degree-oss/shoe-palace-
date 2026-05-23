@@ -1,14 +1,47 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-light: #E6F4F7; /* Pilgrim Light Sky Blue */
-  --color-brand-dark: #1F5B6E; /* Pilgrim Dark Teal */
-  --color-brand-blue: #2a768f; /* Pilgrim Mid Teal */
-  --color-brand-blue-hover: #1F5B6E;
-  --color-brand-accent: #EBC012; /* Pilgrim Action Yellow */
-  --color-brand-accent-hover: #d9ad0b;
+  /* ─── Premium Monochrome Palette ─── 
+     Inspired by END, SSENSE, Mr Porter — 
+     product images provide the color, UI stays out of the way. */
+  --color-brand-black: #0a0a0a;
+  --color-brand-dark: #0a0a0a;
+  --color-brand-charcoal: #1a1a1a;
+  --color-brand-graphite: #2d2d2d;
+  --color-brand-steel: #8a8a8a;
+  --color-brand-silver: #b0b0b0;
+  --color-brand-light: #f7f6f3;
+  --color-brand-white: #ffffff;
+  --color-brand-ivory: #f0ede6;
+  --color-brand-accent: #0a0a0a;
+  --color-brand-accent-hover: #333333;
+  --color-brand-accent-glow: rgba(10, 10, 10, 0.06);
+
+  /* Legacy compat aliases */
+  --color-brand-blue: #0a0a0a;
+  --color-brand-blue-hover: #333333;
+
+  /* Typography */
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
+}
+
+/* ─── Smooth scroll + base ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-brand-light);
+  color: var(--color-brand-black);
+}
+
+/* ─── Selection — the only pop of warmth ─── */
+::selection {
+  background: #1a1a1a;
+  color: #f7f6f3;
 }
 
 @layer utilities {
@@ -17,11 +50,11 @@
   }
 
   .hide-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
   }
 
   .section-gutter {
@@ -38,5 +71,33 @@
       margin-left: 6rem;
     }
   }
-}
 
+  .text-shadow-hero {
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  .glass {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+}

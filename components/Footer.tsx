@@ -1,6 +1,6 @@
 'use client';
 
-import { Leaf, Instagram, Facebook, Youtube, Store } from 'lucide-react';
+import { Instagram, Twitter, Youtube, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
@@ -15,82 +15,107 @@ export function Footer() {
   }, []);
 
   return (
-    <footer id="contact" className="bg-brand-dark text-brand-light pt-20 pb-10">
-      <div className="w-full px-4 md:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="md:col-span-1">
-            <a href="/" className="flex items-center gap-2 group mb-6 text-white">
-              <Store className="text-brand-accent" />
-              <span className="font-serif text-2xl font-semibold tracking-tight">
-                Shoe Place
+    <footer id="contact" className="bg-brand-black text-white">
+      {/* Newsletter Banner */}
+      <div className="border-b border-white/[0.06]">
+        <div className="w-full px-4 md:px-8 lg:px-12 py-10 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <h3 className="font-serif text-xl md:text-3xl font-bold uppercase tracking-tight mb-1.5">Stay in the Loop</h3>
+            <p className="text-white/35 text-xs md:text-sm">Get early access to new drops, exclusive offers, and more.</p>
+          </div>
+          <div className="flex flex-col sm:flex-row w-full md:w-auto gap-2 sm:gap-0">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="w-full sm:flex-1 md:w-72 bg-transparent border border-white/15 px-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-white/40 transition-colors"
+            />
+            <button className="w-full sm:w-auto px-6 py-3 bg-white text-black font-medium text-xs uppercase tracking-[0.15em] hover:bg-white/90 transition-colors flex items-center justify-center gap-2">
+              Subscribe
+              <ArrowRight size={14} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer Grid */}
+      <div className="w-full px-4 md:px-8 lg:px-12 py-14 md:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-16">
+          
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <Link href="/" className="inline-block mb-6">
+              <span className="font-serif text-lg font-bold tracking-[0.15em] uppercase">
+                SHOE PLACE
               </span>
-            </a>
-            <p className="text-brand-light/60 text-sm leading-relaxed mb-6">
-              Bringing premium footwear to your doorstep. Experience the perfect blend of style, comfort, and tradition with Shoe Place.
+            </Link>
+            <p className="text-white/30 text-sm leading-relaxed mb-8 max-w-xs">
+              Performance meets style. Premium footwear crafted for athletes and trendsetters.
             </p>
-            <div className="flex gap-4">
-              <a href="https://www.instagram.com/kesurved_herbal_product/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition-colors">
-                <Instagram size={18} />
+            <div className="flex gap-3">
+              <a href="#" className="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all">
+                <Instagram size={15} />
               </a>
-              <a href="https://www.facebook.com/shubhangi.randive.98?mibextid=wwXIfr&rdid=3VVkGrnefn0fOzH3&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18QkUuEn4b%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition-colors">
-                <Facebook size={18} />
+              <a href="#" className="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all">
+                <Twitter size={15} />
               </a>
-              <a href="https://www.youtube.com/@shubhangirandive9145" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition-colors">
-                <Youtube size={18} />
+              <a href="#" className="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all">
+                <Youtube size={15} />
               </a>
             </div>
           </div>
 
+          {/* Shop */}
           <div>
-            <h4 className="font-serif text-lg mb-6 text-white">Shop Categories</h4>
-            <ul className="space-y-4 text-sm text-brand-light/60">
+            <h4 className="text-[11px] font-medium uppercase tracking-[0.2em] mb-6 text-white/50">Shop</h4>
+            <ul className="space-y-3 text-sm text-white/30">
               {categories.slice(0, 6).map((cat) => (
                 <li key={cat.id}>
-                  <Link href={`/category/${cat.slug}`} className="hover:text-brand-accent transition-colors">
+                  <Link href={`/category/${cat.slug}`} className="hover:text-white transition-colors">
                     {cat.name}
                   </Link>
                 </li>
               ))}
               {categories.length === 0 && (
-                <li className="text-brand-light/40 italic">Loading categories...</li>
+                <li className="text-white/15 italic">Loading...</li>
               )}
             </ul>
           </div>
 
+          {/* Help */}
           <div>
-            <h4 className="font-serif text-lg mb-6 text-white">Terms and Conditions</h4>
-            <ul className="space-y-4 text-sm text-brand-light/60">
-              <li><Link href="/privacy-policy" className="hover:text-brand-accent transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/return-and-refund-policy" className="hover:text-brand-accent transition-colors">Return & Refund Policy</Link></li>
-              <li><Link href="/cancellation-policy" className="hover:text-brand-accent transition-colors">Cancellation Policy</Link></li>
-              <li><Link href="/shipping-policy" className="hover:text-brand-accent transition-colors">Shipping Policy</Link></li>
-              <li><Link href="/terms-and-conditions" className="hover:text-brand-accent transition-colors">Terms & Conditions</Link></li>
+            <h4 className="text-[11px] font-medium uppercase tracking-[0.2em] mb-6 text-white/50">Help</h4>
+            <ul className="space-y-3 text-sm text-white/30">
+              <li><Link href="/shipping-policy" className="hover:text-white transition-colors">Shipping Info</Link></li>
+              <li><Link href="/return-and-refund-policy" className="hover:text-white transition-colors">Returns & Exchanges</Link></li>
+              <li><Link href="/cancellation-policy" className="hover:text-white transition-colors">Cancellation</Link></li>
+              <li><Link href="/account" className="hover:text-white transition-colors">Track Order</Link></li>
             </ul>
           </div>
 
+          {/* Legal */}
           <div>
-            <h4 className="font-serif text-lg mb-6 text-white">Contact Us</h4>
-            <ul className="space-y-4 text-sm text-brand-light/60">
-              <li><a href="tel:7447201252" className="hover:text-brand-accent transition-colors">+91 7447201252</a></li>
-              <li><a href="tel:9270201252" className="hover:text-brand-accent transition-colors">+91 9270201252</a></li>
-              <li><a href="mailto:kesurvedherbalproducts@gmail.com" className="hover:text-brand-accent transition-colors">kesurvedherbalproducts@gmail.com</a></li>
-              <li className="leading-relaxed">Hivare Tarfe Narayangaon, Taluka – Junnar, District – Pune, Maharashtra – 410504</li>
+            <h4 className="text-[11px] font-medium uppercase tracking-[0.2em] mb-6 text-white/50">Legal</h4>
+            <ul className="space-y-3 text-sm text-white/30">
+              <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/our-story" className="hover:text-white transition-colors">About Us</Link></li>
             </ul>
           </div>
 
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-light/40">
-          <p>Copyright©{new Date().getFullYear()} Shoe Place</p>
+        {/* Bottom bar */}
+        <div className="border-t border-white/[0.06] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-white/20 uppercase tracking-wider">
+          <p>© {new Date().getFullYear()} Shoe Place. All Rights Reserved.</p>
           <p>
-            Designed by{' '}
+            Crafted by{' '}
             <a 
               href="https://dybusiness-solutions.com/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-white transition-colors"
+              className="hover:text-white/50 transition-colors"
             >
-              DY Business Solutions Pvt Ltd
+              DY Business Solutions
             </a>
           </p>
         </div>

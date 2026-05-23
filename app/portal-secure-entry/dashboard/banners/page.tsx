@@ -103,25 +103,25 @@ function ImageUploader({ label, currentImage, dimension, onImageSelect }: {
       <input type="file" ref={fileRef} accept="image/*" onChange={handleFile} className="hidden" />
 
       {uploading ? (
-        <div className="w-full border-2 border-dashed border-brand-accent/30 rounded-lg p-6 text-center">
-          <Loader2 size={24} className="mx-auto text-brand-accent animate-spin mb-2" />
+        <div className="w-full border-2 border-dashed border-brand-black/30 rounded-none p-6 text-center">
+          <Loader2 size={24} className="mx-auto text-brand-black animate-spin mb-2" />
           <p className="text-sm text-gray-500">Uploading...</p>
         </div>
       ) : currentImage ? (
-        <div className="relative rounded-lg overflow-hidden h-32 bg-gray-100 group">
+        <div className="relative rounded-none overflow-hidden h-32 bg-gray-100 group">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={currentImage} alt="Preview" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
             <button
               onClick={() => fileRef.current?.click()}
-              className="bg-white text-gray-700 text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-gray-100"
+              className="bg-white text-gray-700 text-xs font-bold px-3 py-1.5 rounded-none hover:bg-gray-100"
               type="button"
             >
               Change Image
             </button>
             <button
               onClick={() => onImageSelect('')}
-              className="bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-red-600"
+              className="bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-none hover:bg-red-600"
               type="button"
             >
               Remove
@@ -131,10 +131,10 @@ function ImageUploader({ label, currentImage, dimension, onImageSelect }: {
       ) : (
         <button
           onClick={() => fileRef.current?.click()}
-          className="w-full border-2 border-dashed border-gray-200 rounded-lg p-6 text-center hover:border-brand-accent/50 transition-colors cursor-pointer group"
+          className="w-full border-2 border-dashed border-gray-200 rounded-none p-6 text-center hover:border-brand-black/50 transition-colors cursor-pointer group"
           type="button"
         >
-          <Upload size={24} className="mx-auto text-gray-300 mb-2 group-hover:text-brand-accent transition-colors" />
+          <Upload size={24} className="mx-auto text-gray-300 mb-2 group-hover:text-brand-black transition-colors" />
           <p className="text-sm text-gray-500 font-medium">Click to upload image</p>
           <p className="text-xs text-gray-300 mt-1">{dimension}</p>
         </button>
@@ -275,12 +275,12 @@ export default function BannersPage() {
           <h2 className="text-2xl font-bold text-gray-900">Banners</h2>
           <p className="text-sm text-gray-500 mt-1">
             Upload images, set button text, link to products, and toggle ON/OFF
-            {saving && <span className="ml-2 text-brand-accent font-medium">• Saving...</span>}
+            {saving && <span className="ml-2 text-brand-black font-medium">• Saving...</span>}
           </p>
         </div>
         <button
           onClick={() => openAddForm()}
-          className="flex items-center gap-2 bg-brand-accent text-brand-dark font-bold px-5 py-2.5 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm"
+          className="flex items-center gap-2 bg-brand-black text-brand-dark font-bold px-5 py-2.5 rounded-none hover:bg-brand-black-hover transition-colors text-sm"
         >
           <Plus size={18} />
           Add Banner
@@ -288,14 +288,14 @@ export default function BannersPage() {
       </div>
 
       {/* Dimension Guide */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 p-5">
         <h3 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
           <Info size={16} className="text-blue-500" />
           Where do banners appear on the website?
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {(Object.entries(SLOT_CONFIG) as [BannerSlot, typeof SLOT_CONFIG['hero']][]).map(([key, config]) => (
-            <div key={key} className="border border-gray-100 rounded-lg p-4 hover:border-brand-accent/30 transition-colors">
+            <div key={key} className="border border-gray-100 rounded-none p-4 hover:border-brand-black/30 transition-colors">
               <div className="flex items-start justify-between">
                 <div>
                   <h4 className="font-semibold text-gray-900 text-sm">{config.label}</h4>
@@ -303,7 +303,7 @@ export default function BannersPage() {
                 </div>
                 <button
                   onClick={() => openAddForm(key)}
-                  className="text-brand-accent hover:text-brand-accent-hover shrink-0 ml-3"
+                  className="text-brand-black hover:text-brand-black-hover shrink-0 ml-3"
                   title={`Add ${config.label}`}
                 >
                   <Plus size={16} />
@@ -335,7 +335,7 @@ export default function BannersPage() {
             <button
               key={tab.key}
               onClick={() => setActiveSlotFilter(tab.key)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+              className={`px-4 py-2 rounded-none text-sm font-medium transition-all whitespace-nowrap ${
                 activeSlotFilter === tab.key ? 'bg-white shadow-sm border border-gray-200 text-gray-900' : 'text-gray-500 hover:bg-white/50'
               }`}
             >
@@ -350,10 +350,10 @@ export default function BannersPage() {
         {filtered.map((banner) => {
           const slotInfo = SLOT_CONFIG[banner.slot];
           return (
-            <div key={banner.id} className={`bg-white rounded-xl shadow-sm border transition-all ${banner.isActive ? 'border-gray-100' : 'border-gray-200 opacity-50'}`}>
+            <div key={banner.id} className={`bg-white rounded-none shadow-sm border transition-all ${banner.isActive ? 'border-gray-100' : 'border-gray-200 opacity-50'}`}>
               <div className="flex flex-col md:flex-row gap-4 p-4">
                 {/* Preview */}
-                <div className="w-full md:w-48 h-28 rounded-lg overflow-hidden bg-gray-100 shrink-0 relative">
+                <div className="w-full md:w-48 h-28 rounded-none overflow-hidden bg-gray-100 shrink-0 relative">
                   {banner.imageUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={banner.imageUrl} alt={banner.title} className="w-full h-full object-cover" />
@@ -380,7 +380,7 @@ export default function BannersPage() {
                   {banner.subtitle && <p className="text-xs text-gray-400 mb-2">{banner.subtitle}</p>}
                   <div className="flex flex-wrap items-center gap-2 text-xs">
                     {banner.showText !== false && (
-                      <span className="bg-brand-accent/10 text-brand-dark font-medium px-2 py-0.5 rounded">
+                      <span className="bg-brand-black/10 text-brand-dark font-medium px-2 py-0.5 rounded">
                         Button: &quot;{banner.buttonText}&quot;
                       </span>
                     )}
@@ -402,10 +402,10 @@ export default function BannersPage() {
                 <div className="flex items-center gap-4 shrink-0 md:flex-col md:items-end md:justify-between">
                   <ToggleSwitch isOn={banner.isActive} onToggle={() => toggleActive(banner.id)} label="show" />
                   <div className="flex items-center gap-1">
-                    <button onClick={() => openEditForm(banner)} className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+                    <button onClick={() => openEditForm(banner)} className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-none transition-colors" title="Edit">
                       <Edit2 size={15} />
                     </button>
-                    <button onClick={() => handleDelete(banner.id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+                    <button onClick={() => handleDelete(banner.id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-none transition-colors" title="Delete">
                       <Trash2 size={15} />
                     </button>
                   </div>
@@ -416,7 +416,7 @@ export default function BannersPage() {
         })}
 
         {filtered.length === 0 && (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 py-16 text-center text-gray-400">
+          <div className="bg-white rounded-none shadow-sm border border-gray-100 py-16 text-center text-gray-400">
             <ImageIcon size={40} className="mx-auto mb-3 opacity-20" />
             <p className="text-sm font-medium">No banners yet</p>
             <p className="text-xs mt-1 text-gray-300">Click &quot;Add Banner&quot; to upload your first banner image</p>
@@ -427,7 +427,7 @@ export default function BannersPage() {
       {/* Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowForm(false)}>
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-none shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white rounded-t-2xl z-10">
               <h3 className="text-lg font-bold text-gray-900">
                 {editingBanner ? 'Edit Banner' : 'Add New Banner'}
@@ -442,7 +442,7 @@ export default function BannersPage() {
                 <select
                   value={formData.slot}
                   onChange={(e) => setFormData({ ...formData, slot: e.target.value as BannerSlot })}
-                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 bg-white"
+                  className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 bg-white"
                 >
                   {(Object.entries(SLOT_CONFIG) as [BannerSlot, typeof SLOT_CONFIG['hero']][]).map(([key, config]) => (
                     <option key={key} value={key}>{config.label}</option>
@@ -465,19 +465,19 @@ export default function BannersPage() {
 
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Headline Text</label>
-                <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g. Buy 2, Get 1 Free" className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30" />
+                <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g. Buy 2, Get 1 Free" className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30" />
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Subtitle (optional)</label>
-                <input type="text" value={formData.subtitle} onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} placeholder="e.g. Limited time offer" className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30" />
+                <input type="text" value={formData.subtitle} onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} placeholder="e.g. Limited time offer" className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30" />
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Button Text</label>
-                <input type="text" value={formData.buttonText} onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })} placeholder="Shop Now" className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30" />
+                <input type="text" value={formData.buttonText} onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })} placeholder="Shop Now" className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30" />
                 <p className="text-xs text-gray-400 mt-1">e.g. &quot;Shop Now&quot;, &quot;View Combo&quot;, &quot;Buy Now&quot;</p>
               </div>
 
-              <div className="flex items-center justify-between bg-gray-50 border border-gray-100 rounded-lg p-4">
+              <div className="flex items-center justify-between bg-gray-50 border border-gray-100 rounded-none p-4">
                 <div>
                   <h4 className="text-sm font-bold text-gray-900">Show Text & Button Overlay</h4>
                   <p className="text-xs text-gray-500 mt-0.5">If OFF, the banner will just be the image (the whole image will be clickable).</p>
@@ -487,7 +487,7 @@ export default function BannersPage() {
 
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">When button is clicked, go to...</label>
-                <select value={formData.linkedProductId} onChange={(e) => setFormData({ ...formData, linkedProductId: e.target.value })} className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 bg-white">
+                <select value={formData.linkedProductId} onChange={(e) => setFormData({ ...formData, linkedProductId: e.target.value })} className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 bg-white">
                   <option value="">— No redirect —</option>
                   <optgroup label="Products">
                     {availableProducts.filter(p => !p.id.startsWith('cat-')).map((p) => (
@@ -505,7 +505,7 @@ export default function BannersPage() {
 
             <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-end gap-3 sticky bottom-0 bg-white rounded-b-2xl">
               <button onClick={() => setShowForm(false)} className="px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors">Cancel</button>
-              <button onClick={handleSave} className="px-5 py-2.5 text-sm font-bold bg-brand-accent text-brand-dark rounded-lg hover:bg-brand-accent-hover transition-colors">
+              <button onClick={handleSave} className="px-5 py-2.5 text-sm font-bold bg-brand-black text-brand-dark rounded-none hover:bg-brand-black-hover transition-colors">
                 {editingBanner ? 'Save Changes' : 'Add Banner'}
               </button>
             </div>

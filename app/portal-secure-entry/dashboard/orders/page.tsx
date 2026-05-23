@@ -206,7 +206,7 @@ export default function OrdersPage() {
           {selectedOrders.size > 0 && (
             <button
               onClick={markAsPacked}
-              className="flex items-center gap-2 bg-yellow-500 text-white font-bold px-4 py-2.5 rounded-lg hover:bg-yellow-600 transition-colors text-sm"
+              className="flex items-center gap-2 bg-yellow-500 text-white font-bold px-4 py-2.5 rounded-none hover:bg-yellow-600 transition-colors text-sm"
             >
               <CheckCircle2 size={16} />
               Mark as Packed ({selectedOrders.size})
@@ -215,7 +215,7 @@ export default function OrdersPage() {
           <button
             onClick={exportToExcel}
             disabled={packedCount === 0}
-            className="flex items-center gap-2 bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-lg hover:bg-emerald-700 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-none hover:bg-emerald-700 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <FileSpreadsheet size={16} />
             Export Excel ({packedCount})
@@ -232,7 +232,7 @@ export default function OrdersPage() {
             <button
               key={status}
               onClick={() => setActiveTab(status)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-none text-sm font-medium transition-all whitespace-nowrap ${
                 activeTab === status
                   ? 'bg-white shadow-sm border border-gray-200 text-gray-900'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-white/50'
@@ -254,13 +254,13 @@ export default function OrdersPage() {
           placeholder="Search by order ID or customer..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+          className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-none text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
         />
       </div>
 
       {/* Orders Table */}
       {loading ? (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-none shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -295,7 +295,7 @@ export default function OrdersPage() {
           </div>
         </div>
       ) : (
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -364,7 +364,7 @@ export default function OrdersPage() {
                         href={`/invoice/${order.id}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-medium text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1"
+                        className="text-xs font-medium text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-none transition-colors flex items-center gap-1"
                       >
                         <FileText size={14} />
                         Invoice
@@ -372,18 +372,18 @@ export default function OrdersPage() {
                       {order.status === 'NEW' && isPackable && (
                         <button
                           onClick={() => updateStatus(order.id, 'PACKED')}
-                          className="text-xs font-medium text-yellow-600 hover:text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-3 py-1.5 rounded-lg transition-colors"
+                          className="text-xs font-medium text-yellow-600 hover:text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-3 py-1.5 rounded-none transition-colors"
                         >
                           Mark Packed
                         </button>
                       )}
                       {order.status === 'NEW' && !isPackable && (
-                        <span className="text-xs font-medium text-orange-500 px-2 py-1 bg-orange-50 rounded-lg">Hold 4hr</span>
+                        <span className="text-xs font-medium text-orange-500 px-2 py-1 bg-orange-50 rounded-none">Hold 4hr</span>
                       )}
                       {order.status === 'PACKED' && (
                         <button
                           onClick={() => updateStatus(order.id, 'NEW')}
-                          className="text-xs font-medium text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors"
+                          className="text-xs font-medium text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-none transition-colors"
                         >
                           Revert to New
                         </button>
@@ -392,13 +392,13 @@ export default function OrdersPage() {
                         <>
                           <button
                             onClick={() => updateStatus(order.id, 'PACKED')}
-                            className="text-xs font-medium text-purple-600 hover:text-purple-700 bg-purple-50 hover:bg-purple-100 px-3 py-1.5 rounded-lg transition-colors"
+                            className="text-xs font-medium text-purple-600 hover:text-purple-700 bg-purple-50 hover:bg-purple-100 px-3 py-1.5 rounded-none transition-colors"
                           >
                             Revert to Packed
                           </button>
                           <button
                             onClick={() => updateStatus(order.id, 'DELIVERED')}
-                            className="text-xs font-medium text-green-600 hover:text-green-700 bg-green-50 hover:bg-green-100 px-3 py-1.5 rounded-lg transition-colors"
+                            className="text-xs font-medium text-green-600 hover:text-green-700 bg-green-50 hover:bg-green-100 px-3 py-1.5 rounded-none transition-colors"
                           >
                             Mark Delivered
                           </button>
@@ -421,7 +421,7 @@ export default function OrdersPage() {
       )}
 
       {/* Cancel Policy Notice */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-3 text-sm text-amber-700">
+      <div className="bg-amber-50 border border-amber-200 rounded-none px-5 py-3 text-sm text-amber-700">
         <strong>Cancel Policy:</strong> Customers can cancel orders within 4 hours of placing. After that, cancellation is not allowed.
       </div>
     </div>

@@ -33,7 +33,7 @@ export default function AnalyticsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 size={32} className="animate-spin text-brand-accent" />
+        <Loader2 size={32} className="animate-spin text-brand-black" />
       </div>
     );
   }
@@ -47,9 +47,9 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-6 border-b border-gray-100 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-none bg-green-50 flex items-center justify-center">
             <TrendingUp size={20} className="text-green-600" />
           </div>
           <div>
@@ -78,9 +78,9 @@ export default function AnalyticsPage() {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       {item.image ? (
-                        <Image src={item.image} alt={item.name} width={40} height={40} className="w-10 h-10 rounded-lg object-cover bg-gray-100" />
+                        <Image src={item.image} alt={item.name} width={40} height={40} className="w-10 h-10 rounded-none object-cover bg-gray-100" />
                       ) : (
-                        <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-none bg-gray-100 flex items-center justify-center">
                           <Package size={16} className="text-gray-300" />
                         </div>
                       )}

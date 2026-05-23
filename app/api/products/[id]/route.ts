@@ -28,7 +28,9 @@ export async function PUT(
       ingredients,
       images,
       sizes,
-      colors
+      colors,
+      colorImages,
+      variantPrices
     } = body;
 
     const baseSlug = body.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -57,6 +59,8 @@ export async function PUT(
         images: Array.isArray(images) ? images : [],
         sizes: Array.isArray(sizes) ? sizes : (typeof sizes === 'string' ? sizes.split(',').map((s: string) => s.trim()).filter(Boolean) : []),
         colors: Array.isArray(colors) ? colors : (typeof colors === 'string' ? colors.split(',').map((c: string) => c.trim()).filter(Boolean) : []),
+        colorImages: colorImages ? (typeof colorImages === 'string' ? colorImages : JSON.stringify(colorImages)) : "{}",
+        variantPrices: variantPrices ? (typeof variantPrices === 'string' ? variantPrices : JSON.stringify(variantPrices)) : "[]",
       },
       include: { category: true }
     });

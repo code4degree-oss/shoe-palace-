@@ -1,17 +1,17 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Shoe Place Herbal Products',
-  description: 'Privacy Policy of Shoe Place Herbal Products.',
+  title: 'Privacy Policy | Shoe Place',
+  description: 'Privacy Policy of Shoe Place.',
 };
 
 export default function PrivacyPolicy() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8 font-sans text-gray-800">
-      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Privacy Policy – Shoe Place Herbal Products</h1>
+      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Privacy Policy – Shoe Place</h1>
       
       <div className="space-y-6">
-        <p>At Shoe Place Herbal Products, we respect your privacy and are committed to protecting your personal information.</p>
+        <p>At Shoe Place, we respect your privacy and are committed to protecting your personal information.</p>
         
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Information We Collect</h2>
         <p>We may collect the following information from customers:</p>
@@ -59,9 +59,9 @@ export default function PrivacyPolicy() {
 
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Contact Information</h2>
         <div className="bg-brand-light/20 p-6 rounded-lg mt-4 border border-brand-light">
-          <p><strong>Business Name:</strong> Shoe Place Herbal Products</p>
+          <p><strong>Business Name:</strong> Shoe Place</p>
           <p><strong>Address:</strong> Hivare Tarfe Narayangaon, Taluka – Junnar, District – Pune, Maharashtra – 410504</p>
-          <p><strong>Email:</strong> <a href="mailto:Shoe Placeherbalproducts@gmail.com" className="text-brand-blue hover:underline">Shoe Placeherbalproducts@gmail.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:support@shoeplace.com" className="text-brand-blue hover:underline">support@shoeplace.com</a></p>
           <p><strong>Phone:</strong> 7447201252 / 9270201252</p>
         </div>
       </div>

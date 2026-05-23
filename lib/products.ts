@@ -29,7 +29,7 @@ export interface Review {
   name: string;
   rating: number;
   text: string;
-  image?: string | null;
+  images?: string[];
   createdAt: Date;
 }
 
@@ -55,6 +55,8 @@ export interface Product {
   badge?: string | null;
   howToUse?: string | null;
   ingredients?: string | null;
+  colorImages?: any;
+  variantPrices?: any;
   reviews?: Review[];
 }
 

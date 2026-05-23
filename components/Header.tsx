@@ -1,15 +1,14 @@
 'use client';
 
 import { useCart } from './CartContext';
-import { ShoppingBag, Store, Menu, X, User, Package } from 'lucide-react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
+import { ShoppingBag, Menu, X, User, Package } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export function Header() {
   const { openCart, cartCount } = useCart();
-  const { scrollY } = useScroll();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
@@ -21,18 +20,6 @@ export function Header() {
       .then(data => setCategories(data))
       .catch(err => console.error('Error fetching categories:', err));
   }, []);
-  
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 50],
-    ['rgba(255, 255, 255, 0.95)', 'rgba(255, 255, 255, 1)']
-  );
-  
-  const borderColor = useTransform(
-    scrollY,
-    [0, 50],
-    ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.08)']
-  );
 
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
@@ -48,44 +35,50 @@ export function Header() {
 
   return (
     <>
-      <motion.header
-        style={{ backgroundColor, borderColor }}
-        className="fixed top-0 left-0 right-0 z-40 border-b backdrop-blur-md transition-colors duration-300"
+      <header
+        className="w-full z-40 bg-white border-b border-gray-100"
       >
-        <div className="w-full px-4 md:px-8 lg:px-12 h-20 flex items-center justify-between">
+
+        <div className="w-full px-4 md:px-8 lg:px-12 h-14 md:h-16 flex items-center justify-between">
           
-          {/* Mobile Menu & Logo (Left) */}
-          <div className="flex items-center gap-4">
+          {/* Left: Mobile Menu + Logo */}
+          <div className="flex items-center gap-3">
             <button 
-              className="md:hidden p-2 -ml-2 text-black hover:text-brand-accent transition-colors"
+              className="md:hidden p-1.5 -ml-1 text-brand-black"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open Mobile Menu"
             >
-              <Menu size={24} />
+              <Menu size={20} />
             </button>
-            <Link href="/" className="flex items-center gap-2 group">
-              <Store className="text-black group-hover:scale-110 transition-transform" />
-              <span className="font-serif text-2xl font-semibold tracking-tight text-black">
-                Shoe Place
+            <Link href="/" className="flex items-center gap-2">
+              <span className="font-serif text-lg md:text-2xl font-bold tracking-[0.15em] uppercase text-brand-black">
+                SHOE PLACE
               </span>
             </Link>
           </div>
 
-          {/* Desktop Navigation (Center) */}
-          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-8 text-[15px] text-black">
+          {/* Center: Desktop Navigation */}
+          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-8 text-[13px] tracking-[0.1em] uppercase font-medium text-brand-steel">
             {categories.map((cat) => (
-              <Link key={cat.id} href={`/category/${cat.id}`} className="hover:text-brand-accent transition-colors px-2 py-1">
+              <Link
+                key={cat.id}
+                href={`/category/${cat.id}`}
+                className="relative py-1 hover:text-brand-black transition-colors group"
+              >
                 {cat.name}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-black group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
-            <Link href="/our-story" className="hover:text-brand-accent transition-colors px-2 py-1">Our Story</Link>
-            <a href="#contact" className="hover:text-brand-accent transition-colors px-2 py-1">Contact</a>
+            <Link href="/our-story" className="relative py-1 hover:text-brand-black transition-colors group">
+              Our Story
+              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-black group-hover:w-full transition-all duration-300" />
+            </Link>
           </nav>
 
-          {/* Icons (Right) */}
-          <div className="flex items-center justify-end gap-2 md:gap-4">
+          {/* Right: Icons */}
+          <div className="flex items-center justify-end gap-1 md:gap-3">
             
-            {/* User Profile / Login */}
+            {/* User Profile */}
             <div className="relative">
               <button
                 onClick={() => {
@@ -96,10 +89,10 @@ export function Header() {
                     router.push('/login');
                   }
                 }}
-                className="relative p-2 text-black hover:text-brand-accent transition-colors"
+                className="relative p-1.5 text-brand-black hover:text-brand-steel transition-colors"
                 aria-label="User Account"
               >
-                <User size={24} />
+                <User size={18} />
               </button>
 
               {/* Profile Dropdown */}
@@ -111,10 +104,10 @@ export function Header() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      className="absolute right-0 mt-2 w-52 bg-white border border-gray-100 rounded-xl shadow-xl py-1.5 z-50"
+                      className="absolute right-0 mt-2 w-52 bg-white border border-gray-100 rounded-none shadow-xl py-1.5 z-50"
                     >
                       <div className="px-4 py-2.5 border-b border-gray-100">
-                        <p className="text-xs text-gray-400">Signed in as</p>
+                        <p className="text-[10px] text-gray-400 uppercase tracking-wider">Signed in as</p>
                         <p className="text-sm font-medium text-gray-900 truncate">{localStorage.getItem('customer_phone')}</p>
                       </div>
                       <Link 
@@ -140,17 +133,18 @@ export function Header() {
               </AnimatePresence>
             </div>
 
+            {/* Cart */}
             <button
               onClick={openCart}
-              className="relative p-2 text-black hover:text-brand-accent transition-colors"
+              className="relative p-1.5 text-brand-black hover:text-brand-steel transition-colors"
               aria-label="Open Cart"
             >
-              <ShoppingBag size={24} />
+              <ShoppingBag size={18} />
               {cartCount > 0 && (
                 <motion.span 
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute top-0 right-0 w-5 h-5 bg-brand-accent text-brand-dark text-xs font-bold rounded-full flex items-center justify-center border-2 border-brand-light"
+                  className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-brand-black text-white text-[10px] font-bold rounded-full flex items-center justify-center"
                 >
                   {cartCount}
                 </motion.span>
@@ -159,88 +153,94 @@ export function Header() {
           </div>
 
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-brand-light z-50 flex flex-col md:hidden"
-            >
-              <div className="flex items-center justify-between px-4 h-20 border-b border-brand-blue/10">
-                <a href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Store className="text-black" />
-                  <span className="font-serif text-2xl font-semibold tracking-tight text-black">
-                    Shoe Place
-                  </span>
-                </a>
-                <button 
-                  className="p-2 -mr-2 text-black hover:text-brand-accent bg-gray-100 rounded-full transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  aria-label="Close Mobile Menu"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-white z-50 flex flex-col md:hidden"
+          >
+            <div className="flex items-center justify-between px-4 h-16 border-b border-gray-100">
+              <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <span className="font-serif text-xl font-bold tracking-[0.15em] uppercase text-black">
+                  SHOE PLACE
+                </span>
+              </Link>
+              <button 
+                className="p-2 -mr-2 text-black hover:text-brand-steel transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close Mobile Menu"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            
+            <nav className="flex flex-col gap-0 flex-1">
+              {categories.map((cat, i) => (
+                <motion.div
+                  key={cat.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
                 >
-                  <X size={24} />
-                </button>
-              </div>
-              
-              <nav className="flex flex-col gap-6 p-8 text-2xl font-serif text-black">
-                {categories.map((cat) => (
                   <Link 
-                    key={cat.id}
                     href={`/category/${cat.id}`} 
-                    className="pb-4 border-b border-brand-blue/10"
+                    className="block px-6 py-5 text-lg font-serif font-bold uppercase tracking-wider text-black border-b border-gray-50 hover:bg-gray-50 transition-all"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {cat.name}
                   </Link>
-                ))}
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: categories.length * 0.05 }}
+              >
                 <Link 
                   href="/our-story" 
-                  className="pb-4 border-b border-brand-blue/10"
+                  className="block px-6 py-5 text-lg font-serif font-bold uppercase tracking-wider text-black border-b border-gray-50 hover:bg-gray-50 transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Our Story
                 </Link>
-                <a 
-                  href="#contact" 
-                  className="pb-4 border-b border-brand-blue/10"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Contact
-                </a>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (categories.length + 1) * 0.05 }}
+              >
                 <button 
-                  className="pb-4 border-b border-brand-blue/10 flex items-center gap-3 text-left w-full"
+                  className="w-full text-left px-6 py-5 text-lg font-serif font-bold uppercase tracking-wider text-black border-b border-gray-50 hover:bg-gray-50 transition-all flex items-center gap-3"
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     const phone = localStorage.getItem('customer_phone');
                     router.push(phone ? '/account' : '/login');
                   }}
                 >
-                  <Package size={22} className="text-brand-accent" />
+                  <Package size={20} className="text-brand-steel" />
                   Track Order
                 </button>
-              </nav>
-              
-              <div className="mt-auto p-8 bg-brand-blue/5">
-                <div className="flex flex-col gap-4">
-                  <button 
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      openCart();
-                    }}
-                    className="w-full py-4 px-6 bg-brand-blue text-white rounded-full font-medium flex items-center justify-center gap-2"
-                  >
-                    <ShoppingBag size={20} />
-                    View Basket ({cartCount})
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </>
+              </motion.div>
+            </nav>
+            
+            <div className="p-6 bg-gray-50 border-t border-gray-100">
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openCart();
+                }}
+                className="w-full py-4 px-6 bg-brand-black text-white font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-3 hover:bg-brand-graphite transition-colors"
+              >
+                <ShoppingBag size={18} />
+                View Bag ({cartCount})
+              </button>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

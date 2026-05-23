@@ -1,17 +1,17 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Shipping Policy | Shoe Place Herbal Products',
-  description: 'Shipping Policy of Shoe Place Herbal Products.',
+  title: 'Shipping Policy | Shoe Place',
+  description: 'Shipping Policy of Shoe Place.',
 };
 
 export default function ShippingPolicy() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8 font-sans text-gray-800">
-      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Shipping Policy – Shoe Place Herbal Products</h1>
+      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Shipping Policy – Shoe Place</h1>
       
       <div className="space-y-6">
-        <p>At Shoe Place Herbal Products, we aim to deliver your orders safely and efficiently across India.</p>
+        <p>At Shoe Place, we aim to deliver your orders safely and efficiently across India.</p>
 
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Order Processing</h2>
         <ul className="list-disc pl-6 space-y-2">
@@ -62,9 +62,9 @@ export default function ShippingPolicy() {
 
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Contact Information</h2>
         <div className="bg-brand-light/20 p-6 rounded-lg mt-4 border border-brand-light">
-          <p><strong>Business Name:</strong> Shoe Place Herbal Products</p>
+          <p><strong>Business Name:</strong> Shoe Place</p>
           <p><strong>Address:</strong> Hivare Tarfe Narayangaon, Taluka – Junnar, District – Pune, Maharashtra – 410504</p>
-          <p><strong>Email:</strong> <a href="mailto:Shoe Placeherbalproducts@gmail.com" className="text-brand-blue hover:underline">Shoe Placeherbalproducts@gmail.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:support@shoeplace.com" className="text-brand-blue hover:underline">support@shoeplace.com</a></p>
           <p><strong>Phone:</strong> 7447201252 / 9270201252</p>
         </div>
       </div>

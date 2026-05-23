@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface BannerData {
   id: string;
@@ -29,12 +31,12 @@ interface Slide {
 
 const FALLBACK: Slide[] = [
   {
-    title: 'Ancient Wisdom,\nModern Results',
-    subtitle: 'Ayurvedic hair & skin care crafted from 100% organic herbs',
-    cta: 'Shop Bestsellers',
+    title: 'STEP INTO\nGREATNESS',
+    subtitle: 'Performance engineered. Style refined. Built for champions.',
+    cta: 'Shop Collection',
     href: '#shop',
-    image: 'https://picsum.photos/seed/hero1/1400/600',
-    mobileImage: 'https://picsum.photos/seed/hero1m/800/1000',
+    image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=1600&auto=format&fit=crop',
+    mobileImage: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=800&auto=format&fit=crop',
     showText: true,
   },
 ];
@@ -51,11 +53,11 @@ export function Hero({ banners = [] }: { banners?: BannerData[] }) {
     .map(b => ({
       title: b.title || '',
       subtitle: b.subtitle || '',
-      cta: b.buttonText || 'Shop Now',
+      cta: b.buttonText || 'Shop Collection',
       href: getLink(b.linkedProductId),
       image: b.imageUrl,
       mobileImage: b.mobileImageUrl || b.imageUrl,
-      showText: b.showText !== false, // default true
+      showText: b.showText !== false,
     }));
 
   const slides = heroSlides.length > 0 ? heroSlides : FALLBACK;
@@ -63,7 +65,7 @@ export function Hero({ banners = [] }: { banners?: BannerData[] }) {
 
   useEffect(() => {
     if (slides.length <= 1) return;
-    const timer = setInterval(() => setCurrent(p => (p + 1) % slides.length), 5000);
+    const timer = setInterval(() => setCurrent(p => (p + 1) % slides.length), 6000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -71,48 +73,127 @@ export function Hero({ banners = [] }: { banners?: BannerData[] }) {
   const next = () => setCurrent((current + 1) % slides.length);
 
   return (
-    <section className="relative w-full overflow-hidden pt-16 md:pt-20">
-      <div className="relative h-[480px] md:h-[540px] lg:h-[600px]">
-        {slides.map((s, i) => (
-          <div
-            key={i}
-            className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          >
-            {/* Clickable Overlay for the whole banner */}
-            <a href={s.href} className="absolute inset-0 z-10 block" aria-label={s.title || "Banner link"} />
-            
-            <Image src={s.image} alt={s.title || 'Banner'} fill priority={i === 0} className="hidden md:block object-cover" sizes="100vw" />
-            <Image src={s.mobileImage} alt={s.title || 'Banner'} fill priority={i === 0} className="block md:hidden object-cover" sizes="100vw" />
-            
-            {s.showText && (
-              <>
-                <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/40 to-transparent z-10 pointer-events-none" />
-                <div className="absolute inset-0 flex items-center z-20 pointer-events-none">
-                  <div className="w-full px-6 md:px-16 lg:px-24 max-w-3xl pointer-events-auto">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight whitespace-pre-line mb-4 drop-shadow-lg">{s.title}</h1>
-                    <p className="text-white/80 text-sm sm:text-base md:text-lg mb-6 max-w-xl">{s.subtitle}</p>
-                    <a href={s.href} className="inline-flex items-center gap-2 bg-brand-accent text-black font-bold px-8 py-3.5 rounded-sm hover:bg-brand-accent-hover transition-colors shadow-lg shadow-brand-accent/30 tracking-wide text-sm md:text-base">
-                      {s.cta}
-                    </a>
+    <section className="relative w-full overflow-hidden">
+      {/* Mobile: 65vh — compact, content-first. Desktop: 100vh — immersive */}
+      <div className="relative h-[65vh] md:h-[100vh] min-h-[400px] md:min-h-[600px] max-h-[600px] md:max-h-[900px]">
+        <AnimatePresence mode="wait">
+          {slides.map((s, i) => i === current && (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="absolute inset-0"
+            >
+              {/* Background image */}
+              <Image
+                src={s.image}
+                alt={s.title || 'Banner'}
+                fill
+                priority={i === 0}
+                className="hidden md:block object-cover"
+                sizes="100vw"
+              />
+              <Image
+                src={s.mobileImage}
+                alt={s.title || 'Banner'}
+                fill
+                priority={i === 0}
+                className="block md:hidden object-cover"
+                sizes="100vw"
+              />
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10 z-10" />
+
+              {s.showText && (
+                <div className="absolute inset-0 flex items-end md:items-center z-20">
+                  <div className="w-full px-5 pb-12 md:px-16 lg:px-24 md:pb-0 max-w-3xl">
+
+                    {/* Title — smaller on mobile */}
+                    <motion.h1
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.5 }}
+                      className="text-3xl sm:text-4xl md:text-6xl lg:text-[5.5rem] font-serif font-bold text-white leading-[0.92] tracking-tight whitespace-pre-line mb-4 md:mb-6 uppercase"
+                    >
+                      {s.title}
+                    </motion.h1>
+
+                    {/* Subtle divider */}
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: 36 }}
+                      transition={{ delay: 0.4, duration: 0.4 }}
+                      className="h-[1px] bg-white/40 mb-4 md:mb-6"
+                    />
+
+                    {/* Subtitle — smaller on mobile */}
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                      className="text-white/50 text-xs md:text-base mb-6 md:mb-10 max-w-sm md:max-w-md font-light tracking-wide leading-relaxed"
+                    >
+                      {s.subtitle}
+                    </motion.p>
+
+                    {/* CTA — compact on mobile */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7, duration: 0.5 }}
+                    >
+                      <Link
+                        href={s.href}
+                        className="group inline-flex items-center gap-2 md:gap-3 border border-white/80 text-white px-5 py-2.5 md:px-8 md:py-3.5 hover:bg-white hover:text-black transition-all duration-300 text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium"
+                      >
+                        {s.cta}
+                        <ArrowRight size={12} className="md:w-[14px] md:h-[14px] group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </motion.div>
                   </div>
                 </div>
-              </>
-            )}
-          </div>
-        ))}
+              )}
 
+              {!s.showText && (
+                <Link href={s.href} className="absolute inset-0 z-10 block" aria-label={s.title || "Banner link"} />
+              )}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+
+        {/* Navigation — hidden on mobile, visible on desktop */}
         {slides.length > 1 && (
           <>
-            <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors">
-              <ChevronLeft size={20} />
+            <button
+              onClick={prev}
+              className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 border border-white/20 items-center justify-center text-white/60 hover:text-white hover:border-white/50 transition-all"
+            >
+              <ChevronLeft size={18} />
             </button>
-            <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors">
-              <ChevronRight size={20} />
+            <button
+              onClick={next}
+              className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 border border-white/20 items-center justify-center text-white/60 hover:text-white hover:border-white/50 transition-all"
+            >
+              <ChevronRight size={18} />
             </button>
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+
+            {/* Slide counter */}
+            <div className="absolute bottom-4 md:bottom-10 left-5 md:left-16 lg:left-24 z-30 flex items-center gap-3 md:gap-4">
               {slides.map((_, i) => (
-                <button key={i} onClick={() => setCurrent(i)} className={`transition-all duration-300 rounded-full ${i === current ? 'w-8 h-2.5 bg-brand-accent' : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/60'}`} />
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`h-[1px] transition-all duration-500 ${
+                    i === current ? 'w-8 md:w-12 bg-white' : 'w-4 md:w-6 bg-white/30 hover:bg-white/50'
+                  }`}
+                />
               ))}
+              <span className="text-white/30 text-[10px] md:text-[11px] font-mono ml-1 md:ml-2 tracking-wider">
+                {String(current + 1).padStart(2, '0')}/{String(slides.length).padStart(2, '0')}
+              </span>
             </div>
           </>
         )}

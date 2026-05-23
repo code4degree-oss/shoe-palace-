@@ -45,9 +45,9 @@ export default function DeliveryPage() {
         <p className="text-sm text-gray-500 mt-1">Configure delivery charges based on pincode</p>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-lg space-y-6">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 p-6 max-w-lg space-y-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-blue-50 rounded-none flex items-center justify-center">
             <Truck size={20} className="text-blue-500" />
           </div>
           <div>
@@ -66,7 +66,7 @@ export default function DeliveryPage() {
               type="number"
               value={maharashtraCharge}
               onChange={(e) => setMaharashtraCharge(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg pl-8 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+              className="w-full border border-gray-200 rounded-none pl-8 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
             />
           </div>
         </div>
@@ -81,18 +81,18 @@ export default function DeliveryPage() {
               type="number"
               value={outsideCharge}
               onChange={(e) => setOutsideCharge(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg pl-8 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+              className="w-full border border-gray-200 rounded-none pl-8 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
             />
           </div>
         </div>
 
-        <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 text-sm text-blue-700">
+        <div className="bg-blue-50 border border-blue-100 rounded-none p-4 text-sm text-blue-700">
           <strong>How it works:</strong> Indian pincodes starting with <code className="bg-blue-100 px-1.5 py-0.5 rounded text-xs font-mono">4</code> belong to Maharashtra. All other pincodes are charged the outside rate.
         </div>
 
         <button
           onClick={handleSave}
-          className="flex items-center gap-2 bg-brand-accent text-brand-dark font-bold px-6 py-3 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm"
+          className="flex items-center gap-2 bg-brand-black text-brand-dark font-bold px-6 py-3 rounded-none hover:bg-brand-black-hover transition-colors text-sm"
         >
           <Save size={16} />
           {saved ? 'Saved ✓' : 'Save Changes'}

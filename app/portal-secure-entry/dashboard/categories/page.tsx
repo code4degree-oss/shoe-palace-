@@ -42,8 +42,8 @@ function ImageUploader({ label, currentImage, dimension, onImageSelect }: {
       
       <div 
         onClick={() => fileRef.current?.click()}
-        className={`relative w-full h-32 rounded-xl border-2 border-dashed flex flex-col items-center justify-center cursor-pointer overflow-hidden group transition-all ${
-          currentImage ? 'border-brand-accent/50 bg-brand-light/20' : 'border-gray-200 hover:border-brand-accent/50 hover:bg-brand-light/10'
+        className={`relative w-full h-32 rounded-none border-2 border-dashed flex flex-col items-center justify-center cursor-pointer overflow-hidden group transition-all ${
+          currentImage ? 'border-brand-black/50 bg-brand-light/20' : 'border-gray-200 hover:border-brand-black/50 hover:bg-brand-light/10'
         }`}
       >
         {uploading ? (
@@ -54,7 +54,7 @@ function ImageUploader({ label, currentImage, dimension, onImageSelect }: {
         ) : currentImage ? (
           <>
             <img src={currentImage} alt="Preview" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity" />
-            <div className="relative z-10 bg-white/90 backdrop-blur px-4 py-2 rounded-lg text-sm font-bold text-brand-dark shadow-sm transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
+            <div className="relative z-10 bg-white/90 backdrop-blur px-4 py-2 rounded-none text-sm font-bold text-brand-dark shadow-sm transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
               Change Image
             </div>
           </>
@@ -172,7 +172,7 @@ export default function CategoriesPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 size={32} className="animate-spin text-brand-accent" />
+        <Loader2 size={32} className="animate-spin text-brand-black" />
       </div>
     );
   }
@@ -186,7 +186,7 @@ export default function CategoriesPage() {
         </div>
         <button
           onClick={openAddForm}
-          className="flex items-center gap-2 bg-brand-accent text-brand-dark font-bold px-5 py-2.5 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm"
+          className="flex items-center gap-2 bg-brand-black text-brand-dark font-bold px-5 py-2.5 rounded-none hover:bg-brand-black-hover transition-colors text-sm"
         >
           <Plus size={18} />
           Add Category
@@ -195,10 +195,10 @@ export default function CategoriesPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {categories.map((cat) => (
-          <div key={cat.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 group hover:shadow-md transition-shadow">
+          <div key={cat.id} className="bg-white rounded-none shadow-sm border border-gray-100 p-5 group hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-brand-light rounded-lg flex items-center justify-center overflow-hidden border border-gray-100">
+                <div className="w-12 h-12 bg-brand-light rounded-none flex items-center justify-center overflow-hidden border border-gray-100">
                   {cat.image ? (
                     <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
                   ) : (
@@ -231,7 +231,7 @@ export default function CategoriesPage() {
       </div>
 
       {categories.length === 0 && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 py-16 text-center text-gray-400">
+        <div className="bg-white rounded-none shadow-sm border border-gray-100 py-16 text-center text-gray-400">
           <Layers size={40} className="mx-auto mb-3 opacity-20" />
           <p className="text-sm font-medium">No categories yet</p>
           <p className="text-xs mt-1 text-gray-300">Click &quot;Add Category&quot; to create your first category</p>
@@ -241,7 +241,7 @@ export default function CategoriesPage() {
       {/* Add/Edit Category Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowForm(false)}>
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-none shadow-xl w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-lg font-bold text-gray-900 mb-4">{editingCategoryId ? 'Edit Category' : 'Add Category'}</h3>
             <input
               type="text"
@@ -249,7 +249,7 @@ export default function CategoriesPage() {
               onChange={(e) => setNewName(e.target.value)}
               placeholder="Category name"
               autoFocus
-              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 mb-4"
+              className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 mb-4"
               onKeyDown={(e) => e.key === 'Enter' && saveCategory()}
             />
             
@@ -265,7 +265,7 @@ export default function CategoriesPage() {
               <button 
                 onClick={saveCategory} 
                 disabled={saving}
-                className="px-5 py-2 text-sm font-bold bg-brand-accent text-brand-dark rounded-lg hover:bg-brand-accent-hover disabled:opacity-50"
+                className="px-5 py-2 text-sm font-bold bg-brand-black text-brand-dark rounded-none hover:bg-brand-black-hover disabled:opacity-50"
               >
                 {saving ? 'Saving...' : (editingCategoryId ? 'Save Changes' : 'Add Category')}
               </button>

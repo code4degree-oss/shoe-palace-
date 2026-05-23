@@ -32,6 +32,8 @@ interface ProductRow {
   images?: string[];
   sizes?: string[];
   colors?: string[];
+  colorImages?: any;
+  variantPrices?: any;
 }
 
 export default function ProductsPage() {
@@ -65,6 +67,8 @@ export default function ProductsPage() {
     images: [] as string[],
     sizes: '',
     colors: '',
+    colorImages: {} as any,
+    variantPrices: [] as any[],
   });
 
   // Load products & categories on mount
@@ -106,6 +110,8 @@ export default function ProductsPage() {
       images: [],
       sizes: '',
       colors: '',
+      colorImages: {},
+      variantPrices: [],
     });
     setShowForm(true);
   };
@@ -131,6 +137,8 @@ export default function ProductsPage() {
       images: product.images || [],
       sizes: product.sizes?.join(', ') || '',
       colors: product.colors?.join(', ') || '',
+      colorImages: typeof product.colorImages === 'string' ? JSON.parse(product.colorImages || '{}') : (product.colorImages || {}),
+      variantPrices: typeof product.variantPrices === 'string' ? JSON.parse(product.variantPrices || '[]') : (product.variantPrices || []),
     });
     setShowForm(true);
   };
@@ -249,7 +257,7 @@ export default function ProductsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 size={32} className="animate-spin text-brand-accent" />
+        <Loader2 size={32} className="animate-spin text-brand-black" />
       </div>
     );
   }
@@ -264,7 +272,7 @@ export default function ProductsPage() {
         </div>
         <button
           onClick={openAddForm}
-          className="flex items-center gap-2 bg-brand-accent text-brand-dark font-bold px-5 py-2.5 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm"
+          className="flex items-center gap-2 bg-brand-black text-brand-dark font-bold px-5 py-2.5 rounded-none hover:bg-brand-black-hover transition-colors text-sm"
         >
           <Plus size={18} />
           Add Product
@@ -279,12 +287,12 @@ export default function ProductsPage() {
           placeholder="Search products..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 focus:border-brand-accent/50"
+          className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-none text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 focus:border-brand-black/50"
         />
       </div>
 
       {/* Products Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -314,9 +322,9 @@ export default function ProductsPage() {
                     <div className="flex items-center gap-3">
                       {product.image ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={product.image} alt={product.name} className="w-10 h-10 rounded-lg object-cover bg-gray-100" />
+                        <img src={product.image} alt={product.name} className="w-10 h-10 rounded-none object-cover bg-gray-100" />
                       ) : (
-                        <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-none bg-gray-100 flex items-center justify-center">
                           <Package size={16} className="text-gray-300" />
                         </div>
                       )}
@@ -343,7 +351,7 @@ export default function ProductsPage() {
                   </td>
                   <td className="px-4 py-3">
                     {product.badge ? (
-                      <span className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brand-accent/15 text-brand-dark">
+                      <span className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brand-black/15 text-brand-dark">
                         {product.badge}
                       </span>
                     ) : (
@@ -354,14 +362,14 @@ export default function ProductsPage() {
                     <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
                         onClick={() => openEditForm(product)}
-                        className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
+                        className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-none transition-colors"
                         title="Edit"
                       >
                         <Edit2 size={16} />
                       </button>
                       <button
                         onClick={() => handleDelete(product.id)}
-                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-none transition-colors"
                         title="Delete"
                       >
                         <Trash2 size={16} />
@@ -384,7 +392,7 @@ export default function ProductsPage() {
       {/* Add/Edit Product Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowForm(false)}>
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-none shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white rounded-t-2xl z-10">
               <h3 className="text-lg font-bold text-gray-900">
                 {editingProduct ? 'Edit Product' : 'Add New Product'}
@@ -401,7 +409,7 @@ export default function ProductsPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Enter product name"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                  className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                 />
               </div>
               <div>
@@ -411,7 +419,7 @@ export default function ProductsPage() {
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Product description"
                   rows={3}
-                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 resize-none"
+                  className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 resize-none"
                 />
               </div>
               <div>
@@ -421,7 +429,7 @@ export default function ProductsPage() {
                   value={formData.sku}
                   onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
                   placeholder="e.g. BHR-OIL-100"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                  className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -432,7 +440,7 @@ export default function ProductsPage() {
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                     placeholder="599"
-                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                    className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                   />
                 </div>
                 <div>
@@ -442,7 +450,7 @@ export default function ProductsPage() {
                     value={formData.salePrice}
                     onChange={(e) => setFormData({ ...formData, salePrice: e.target.value })}
                     placeholder="449"
-                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                    className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                   />
                 </div>
               </div>
@@ -454,7 +462,7 @@ export default function ProductsPage() {
                     value={formData.stock}
                     onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
                     placeholder="25"
-                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                    className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                   />
                 </div>
                 <div>
@@ -465,12 +473,12 @@ export default function ProductsPage() {
                       value={formData.displayWeight}
                       onChange={(e) => setFormData({ ...formData, displayWeight: e.target.value })}
                       placeholder="100"
-                      className="flex-1 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                      className="flex-1 border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                     />
                     <select
                       value={formData.weightUnit}
                       onChange={(e) => setFormData({ ...formData, weightUnit: e.target.value })}
-                      className="w-20 border border-gray-200 rounded-lg px-2 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 bg-white"
+                      className="w-20 border border-gray-200 rounded-none px-2 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 bg-white"
                     >
                       <option value="g">g</option>
                       <option value="ml">ml</option>
@@ -486,7 +494,7 @@ export default function ProductsPage() {
                   value={formData.shippingWeightGrams}
                   onChange={(e) => setFormData({ ...formData, shippingWeightGrams: e.target.value })}
                   placeholder="250"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                  className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                 />
                 <p className="text-[10px] text-gray-400 mt-1">Used for India Post shipping calculations (include box weight)</p>
               </div>
@@ -496,7 +504,7 @@ export default function ProductsPage() {
                   <select
                     value={formData.categoryId}
                     onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 bg-white"
+                    className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 bg-white"
                   >
                     <option value="">Select category</option>
                     {categories.map(c => (
@@ -509,7 +517,7 @@ export default function ProductsPage() {
                   <select
                     value={formData.badge}
                     onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 bg-white"
+                    className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 bg-white"
                   >
                     <option value="">No Badge</option>
                     <option value="Best Seller">Best Seller</option>
@@ -523,25 +531,25 @@ export default function ProductsPage() {
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Product Image</label>
                 <input type="file" ref={fileRef} accept="image/*" onChange={handleImageUpload} className="hidden" />
                 {uploading ? (
-                  <div className="border-2 border-dashed border-brand-accent/30 rounded-lg p-6 text-center">
-                    <Loader2 size={24} className="mx-auto text-brand-accent animate-spin mb-2" />
+                  <div className="border-2 border-dashed border-brand-black/30 rounded-none p-6 text-center">
+                    <Loader2 size={24} className="mx-auto text-brand-black animate-spin mb-2" />
                     <p className="text-sm text-gray-500">Uploading...</p>
                   </div>
                 ) : formData.image ? (
-                  <div className="relative rounded-lg overflow-hidden h-32 bg-gray-100 group">
+                  <div className="relative rounded-none overflow-hidden h-32 bg-gray-100 group">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                       <button
                         onClick={() => fileRef.current?.click()}
-                        className="bg-white text-gray-700 text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-gray-100"
+                        className="bg-white text-gray-700 text-xs font-bold px-3 py-1.5 rounded-none hover:bg-gray-100"
                         type="button"
                       >
                         Change
                       </button>
                       <button
                         onClick={() => setFormData({ ...formData, image: '' })}
-                        className="bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-red-600"
+                        className="bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-none hover:bg-red-600"
                         type="button"
                       >
                         Remove
@@ -551,7 +559,7 @@ export default function ProductsPage() {
                 ) : (
                   <button
                     onClick={() => fileRef.current?.click()}
-                    className="w-full border-2 border-dashed border-gray-200 rounded-lg p-6 text-center hover:border-brand-accent/50 transition-colors cursor-pointer"
+                    className="w-full border-2 border-dashed border-gray-200 rounded-none p-6 text-center hover:border-brand-black/50 transition-colors cursor-pointer"
                     type="button"
                   >
                     <Upload size={24} className="mx-auto text-gray-300 mb-2" />
@@ -565,7 +573,7 @@ export default function ProductsPage() {
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Additional Gallery Images</label>
                 <div className="grid grid-cols-4 gap-3 mb-3">
                   {formData.images.map((img, idx) => (
-                    <div key={idx} className="relative rounded-lg overflow-hidden h-24 bg-gray-100 group">
+                    <div key={idx} className="relative rounded-none overflow-hidden h-24 bg-gray-100 group">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -581,8 +589,8 @@ export default function ProductsPage() {
                     </div>
                   ))}
                   {uploading && (
-                    <div className="border-2 border-dashed border-brand-accent/30 rounded-lg h-24 flex items-center justify-center">
-                      <Loader2 size={20} className="text-brand-accent animate-spin" />
+                    <div className="border-2 border-dashed border-brand-black/30 rounded-none h-24 flex items-center justify-center">
+                      <Loader2 size={20} className="text-brand-black animate-spin" />
                     </div>
                   )}
                 </div>
@@ -591,7 +599,7 @@ export default function ProductsPage() {
                   <input type="file" id="gallery-upload" accept="image/*" onChange={handleGalleryImageUpload} className="hidden" />
                   <label
                     htmlFor="gallery-upload"
-                    className="w-full border-2 border-dashed border-gray-200 rounded-lg p-3 text-center hover:border-brand-accent/50 transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm text-gray-500"
+                    className="w-full border-2 border-dashed border-gray-200 rounded-none p-3 text-center hover:border-brand-black/50 transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm text-gray-500"
                   >
                     <Plus size={16} /> Add Gallery Image
                   </label>
@@ -604,7 +612,7 @@ export default function ProductsPage() {
                   value={formData.howToUse}
                   onChange={(e) => setFormData({ ...formData, howToUse: e.target.value })}
                   rows={4}
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 resize-none whitespace-pre-wrap"
+                  className="w-full border border-gray-200 rounded-none px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 resize-none whitespace-pre-wrap"
                   placeholder="E.g., Apply directly to scalp..."
                 />
               </div>
@@ -615,7 +623,7 @@ export default function ProductsPage() {
                   value={formData.ingredients}
                   onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
                   rows={4}
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30 resize-none whitespace-pre-wrap"
+                  className="w-full border border-gray-200 rounded-none px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30 resize-none whitespace-pre-wrap"
                   placeholder="E.g., Onion Extract, Coconut Oil..."
                 />
               </div>
@@ -627,7 +635,7 @@ export default function ProductsPage() {
                     type="text"
                     value={formData.sizes}
                     onChange={(e) => setFormData({ ...formData, sizes: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                    className="w-full border border-gray-200 rounded-none px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                     placeholder="E.g., 7, 8, 9, 10"
                   />
                 </div>
@@ -637,11 +645,83 @@ export default function ProductsPage() {
                     type="text"
                     value={formData.colors}
                     onChange={(e) => setFormData({ ...formData, colors: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+                    className="w-full border border-gray-200 rounded-none px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
                     placeholder="E.g., Black, White, Red"
                   />
                 </div>
               </div>
+
+              {formData.colors && formData.colors.length > 0 && formData.sizes && formData.sizes.length > 0 && (
+                <div className="bg-gray-50 p-4 border border-gray-200 mt-4">
+                  <h4 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Variant Pricing (Optional)</h4>
+                  <p className="text-xs text-gray-500 mb-4">Set specific prices for color and size combinations. If left blank, default MRP and Sale Price will be used.</p>
+                  <div className="max-h-60 overflow-y-auto space-y-2">
+                    {formData.colors.split(',').map(c => c.trim()).filter(Boolean).map(color => (
+                      formData.sizes.split(',').map(s => s.trim()).filter(Boolean).map(size => {
+                        const existing = formData.variantPrices.find((v: any) => v.color === color && v.size === size) || { price: '', salePrice: '' };
+                        return (
+                          <div key={`${color}-${size}`} className="flex items-center gap-3 bg-white p-2 border border-gray-100">
+                            <div className="w-1/3 text-sm font-medium text-gray-700">{color} - UK {size}</div>
+                            <input 
+                              type="number" 
+                              placeholder="MRP ₹" 
+                              value={existing.price}
+                              onChange={(e) => {
+                                const newPrices = [...formData.variantPrices];
+                                const idx = newPrices.findIndex(v => v.color === color && v.size === size);
+                                if (idx >= 0) newPrices[idx].price = e.target.value;
+                                else newPrices.push({ color, size, price: e.target.value, salePrice: existing.salePrice });
+                                setFormData({ ...formData, variantPrices: newPrices });
+                              }}
+                              className="w-1/3 border border-gray-200 px-2 py-1.5 text-sm"
+                            />
+                            <input 
+                              type="number" 
+                              placeholder="Sale ₹" 
+                              value={existing.salePrice}
+                              onChange={(e) => {
+                                const newPrices = [...formData.variantPrices];
+                                const idx = newPrices.findIndex(v => v.color === color && v.size === size);
+                                if (idx >= 0) newPrices[idx].salePrice = e.target.value;
+                                else newPrices.push({ color, size, price: existing.price, salePrice: e.target.value });
+                                setFormData({ ...formData, variantPrices: newPrices });
+                              }}
+                              className="w-1/3 border border-gray-200 px-2 py-1.5 text-sm"
+                            />
+                          </div>
+                        );
+                      })
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {formData.colors && formData.colors.length > 0 && (
+                <div className="bg-gray-50 p-4 border border-gray-200 mt-4">
+                  <h4 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Color Images (Optional)</h4>
+                  <p className="text-xs text-gray-500 mb-4">Paste image URLs for specific colors. If empty, gallery images match colors sequentially.</p>
+                  <div className="space-y-2">
+                    {formData.colors.split(',').map(c => c.trim()).filter(Boolean).map(color => (
+                      <div key={color} className="flex items-center gap-3 bg-white p-2 border border-gray-100">
+                        <div className="w-1/3 text-sm font-medium text-gray-700">{color}</div>
+                        <input 
+                          type="text" 
+                          placeholder="Image URL..." 
+                          value={formData.colorImages[color]?.[0] || ''}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            const newColorImages = { ...formData.colorImages };
+                            if (val) newColorImages[color] = [val];
+                            else delete newColorImages[color];
+                            setFormData({ ...formData, colorImages: newColorImages });
+                          }}
+                          className="w-2/3 border border-gray-200 px-2 py-1.5 text-sm"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-end gap-3 sticky bottom-0 bg-white rounded-b-2xl">
               <button
@@ -653,7 +733,7 @@ export default function ProductsPage() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="px-5 py-2.5 text-sm font-bold bg-brand-accent text-brand-dark rounded-lg hover:bg-brand-accent-hover transition-colors disabled:opacity-50"
+                className="px-5 py-2.5 text-sm font-bold bg-brand-black text-brand-dark rounded-none hover:bg-brand-black-hover transition-colors disabled:opacity-50"
               >
                 {saving ? 'Saving...' : editingProduct ? 'Save Changes' : 'Add Product'}
               </button>

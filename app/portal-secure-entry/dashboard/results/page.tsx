@@ -121,12 +121,12 @@ export default function ResultsPage() {
           <h2 className="text-2xl font-bold text-gray-900">Before & After Results</h2>
           <p className="text-sm text-gray-500 mt-1">
             Manage the transformation images shown above the reviews.
-            {saving && <span className="ml-2 text-brand-accent font-medium">• Saving...</span>}
+            {saving && <span className="ml-2 text-brand-black font-medium">• Saving...</span>}
           </p>
         </div>
         <button
           onClick={openAddForm}
-          className="flex items-center gap-2 bg-brand-accent text-brand-dark font-bold px-5 py-2.5 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm"
+          className="flex items-center gap-2 bg-brand-black text-brand-dark font-bold px-5 py-2.5 rounded-none hover:bg-brand-black-hover transition-colors text-sm"
         >
           <Plus size={18} />
           Add Image
@@ -135,7 +135,7 @@ export default function ResultsPage() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {results.map((result) => (
-          <div key={result.id} className={`bg-white rounded-xl shadow-sm border overflow-hidden relative group transition-all ${result.isActive ? 'border-gray-100' : 'border-gray-200 opacity-70'}`}>
+          <div key={result.id} className={`bg-white rounded-none shadow-sm border overflow-hidden relative group transition-all ${result.isActive ? 'border-gray-100' : 'border-gray-200 opacity-70'}`}>
             <div className="aspect-square bg-gray-100 relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={result.imageUrl} alt="Result" className="w-full h-full object-cover" />
@@ -150,7 +150,7 @@ export default function ResultsPage() {
             
             <div className="p-3 border-t border-gray-100 flex items-center justify-between bg-white relative z-10">
               <ToggleSwitch isOn={result.isActive} onToggle={() => toggleActive(result.id)} />
-              <button onClick={() => handleDelete(result.id)} className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+              <button onClick={() => handleDelete(result.id)} className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-none transition-colors" title="Delete">
                 <Trash2 size={16} />
               </button>
             </div>
@@ -158,7 +158,7 @@ export default function ResultsPage() {
         ))}
 
         {results.length === 0 && (
-          <div className="col-span-full bg-white rounded-xl shadow-sm border border-gray-100 py-16 text-center text-gray-400">
+          <div className="col-span-full bg-white rounded-none shadow-sm border border-gray-100 py-16 text-center text-gray-400">
             <ImageIcon size={40} className="mx-auto mb-3 opacity-20" />
             <p className="text-sm font-medium">No results images yet</p>
             <p className="text-xs mt-1 text-gray-300">Click &quot;Add Image&quot; to upload your first before/after picture</p>
@@ -168,7 +168,7 @@ export default function ResultsPage() {
 
       {showForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowForm(false)}>
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-none shadow-xl w-full max-w-sm" onClick={(e) => e.stopPropagation()}>
             <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
               <h3 className="text-lg font-bold text-gray-900">Add Result Image</h3>
               <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-gray-600">
@@ -181,8 +181,8 @@ export default function ResultsPage() {
                 <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wider">Image</label>
                 <div 
                   onClick={() => fileInputRef.current?.click()}
-                  className={`w-full aspect-square rounded-xl border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-colors overflow-hidden group
-                    ${formData.imageUrl ? 'border-brand-accent/50 hover:border-brand-accent' : 'border-gray-200 hover:border-brand-accent/50 hover:bg-brand-light/30'}
+                  className={`w-full aspect-square rounded-none border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-colors overflow-hidden group
+                    ${formData.imageUrl ? 'border-brand-black/50 hover:border-brand-black' : 'border-gray-200 hover:border-brand-black/50 hover:bg-brand-light/30'}
                     ${uploadingImage ? 'opacity-50 cursor-not-allowed' : ''}
                   `}
                 >
@@ -203,7 +203,7 @@ export default function ResultsPage() {
                     </div>
                   ) : (
                     <div className="flex flex-col items-center gap-2 text-gray-400">
-                      <Upload size={24} className="group-hover:text-brand-accent transition-colors" />
+                      <Upload size={24} className="group-hover:text-brand-black transition-colors" />
                       <span className="text-sm font-medium group-hover:text-brand-dark transition-colors">Click to upload image</span>
                       <span className="text-xs text-gray-400">Square dimension (e.g. 800x800)</span>
                     </div>
@@ -218,7 +218,7 @@ export default function ResultsPage() {
                 />
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
+              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-none border border-gray-100">
                 <div>
                   <p className="text-sm font-bold text-gray-900">Visibility</p>
                   <p className="text-xs text-gray-500 mt-0.5">Show this image on website?</p>
@@ -232,7 +232,7 @@ export default function ResultsPage() {
               <button 
                 onClick={handleSave} 
                 disabled={!formData.imageUrl || uploadingImage}
-                className="px-5 py-2.5 text-sm font-bold bg-brand-accent text-brand-dark rounded-lg hover:bg-brand-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-5 py-2.5 text-sm font-bold bg-brand-black text-brand-dark rounded-none hover:bg-brand-black-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Add Image
               </button>

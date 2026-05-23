@@ -14,9 +14,9 @@ const STATUS_COLORS: Record<string, string> = {
 
 function SkeletonCard() {
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 animate-pulse">
+    <div className="bg-white rounded-none p-5 shadow-sm border border-gray-100 animate-pulse">
       <div className="flex items-start justify-between mb-4">
-        <div className="w-10 h-10 bg-gray-200 rounded-lg" />
+        <div className="w-10 h-10 bg-gray-200 rounded-none" />
       </div>
       <div className="h-7 bg-gray-200 rounded w-24 mb-2" />
       <div className="h-4 bg-gray-100 rounded w-32" />
@@ -75,9 +75,9 @@ export default function DashboardHomePage() {
           </>
         ) : (
           stats.map((stat) => (
-            <div key={stat.label} className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div key={stat.label} className="bg-white rounded-none p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex items-start justify-between mb-4">
-                <div className={`w-10 h-10 ${stat.color} rounded-lg flex items-center justify-center`}>
+                <div className={`w-10 h-10 ${stat.color} rounded-none flex items-center justify-center`}>
                   <stat.icon size={20} className="text-white" />
                 </div>
                 {stat.change && (
@@ -95,7 +95,7 @@ export default function DashboardHomePage() {
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <h2 className="text-lg font-bold text-gray-900">Recent Orders</h2>
           <Link href="/portal-secure-entry/dashboard/orders" className="text-sm font-medium text-brand-blue hover:underline flex items-center gap-1">
@@ -161,9 +161,9 @@ export default function DashboardHomePage() {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Link href="/portal-secure-entry/dashboard/orders" className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
+        <Link href="/portal-secure-entry/dashboard/orders" className="bg-white rounded-none p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+            <div className="w-10 h-10 bg-blue-50 rounded-none flex items-center justify-center group-hover:bg-blue-100 transition-colors">
               <Clock size={20} className="text-blue-500" />
             </div>
             <div>
@@ -172,9 +172,9 @@ export default function DashboardHomePage() {
             </div>
           </div>
         </Link>
-        <Link href="/portal-secure-entry/dashboard/reviews" className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
+        <Link href="/portal-secure-entry/dashboard/reviews" className="bg-white rounded-none p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-yellow-50 rounded-lg flex items-center justify-center group-hover:bg-yellow-100 transition-colors">
+            <div className="w-10 h-10 bg-yellow-50 rounded-none flex items-center justify-center group-hover:bg-yellow-100 transition-colors">
               <ArrowUpRight size={20} className="text-yellow-500" />
             </div>
             <div>
@@ -183,9 +183,9 @@ export default function DashboardHomePage() {
             </div>
           </div>
         </Link>
-        <Link href="/portal-secure-entry/dashboard/products" className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
+        <Link href="/portal-secure-entry/dashboard/products" className="bg-white rounded-none p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center group-hover:bg-purple-100 transition-colors">
+            <div className="w-10 h-10 bg-purple-50 rounded-none flex items-center justify-center group-hover:bg-purple-100 transition-colors">
               <Package size={20} className="text-purple-500" />
             </div>
             <div>

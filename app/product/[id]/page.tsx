@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     <div className="min-h-screen bg-brand-light flex flex-col antialiased">
       <Header />
       
-      <main className="flex-1 pt-24 pb-16 md:pt-32 md:pb-24">
+      <main className="flex-1 py-6 md:py-12">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="mb-6 md:mb-8">
             <Link href="/" className="inline-flex items-center text-sm font-medium text-brand-dark/60 hover:text-black transition-colors">

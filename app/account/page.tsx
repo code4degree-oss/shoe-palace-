@@ -78,7 +78,7 @@ export default function AccountPage() {
           <div className="space-y-6">
             {orders.map((order) => {
               const orderAgeMs = Date.now() - new Date(order.createdAt).getTime();
-              const canCancel = order.status === 'NEW' && orderAgeMs < 4 * 60 * 60 * 1000;
+              const canCancel = order.status === 'NEW' && orderAgeMs < 12 * 60 * 60 * 1000;
               return (
               <div key={order.id} className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                 <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex flex-wrap justify-between items-center gap-4">
@@ -117,7 +117,7 @@ export default function AccountPage() {
                         href={`/cancel-order/${order.id}`}
                         className="text-sm font-medium text-red-600 hover:text-red-700 hover:underline"
                       >
-                        Cancel Order
+                        Cancel within 12 hr
                       </Link>
                     )}
                   </div>

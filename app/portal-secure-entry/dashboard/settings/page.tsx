@@ -16,7 +16,7 @@ const CLEAR_SECTIONS = [
 ];
 
 export default function SettingsPage() {
-  const [storeName, setStoreName] = useState('Shoe Place Herbal Products');
+  const [storeName, setStoreName] = useState('Shoe Place');
   const [cancelHours, setCancelHours] = useState('4');
   const [saved, setSaved] = useState(false);
 
@@ -93,7 +93,7 @@ export default function SettingsPage() {
       </div>
 
       {/* ── Store Settings ── */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-lg space-y-5">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 p-6 max-w-lg space-y-5">
         <h3 className="text-base font-semibold text-gray-800 flex items-center gap-2">
           <Settings size={18} className="text-gray-400" />
           Store Configuration
@@ -105,7 +105,7 @@ export default function SettingsPage() {
             type="text"
             value={storeName}
             onChange={(e) => setStoreName(e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+            className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
           />
         </div>
 
@@ -115,14 +115,14 @@ export default function SettingsPage() {
             type="number"
             value={cancelHours}
             onChange={(e) => setCancelHours(e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+            className="w-full border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
           />
           <p className="text-xs text-gray-400 mt-1">Customers can cancel orders within this many hours of placing</p>
         </div>
 
         <button
           onClick={handleSave}
-          className="flex items-center gap-2 bg-brand-accent text-brand-dark font-bold px-6 py-3 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm"
+          className="flex items-center gap-2 bg-brand-black text-brand-dark font-bold px-6 py-3 rounded-none hover:bg-brand-black-hover transition-colors text-sm"
         >
           <Save size={16} />
           {saved ? 'Saved ✓' : 'Save Settings'}
@@ -130,9 +130,9 @@ export default function SettingsPage() {
       </div>
 
       {/* ── Reset Database ── */}
-      <div className="bg-white rounded-xl shadow-sm border border-red-100 p-6 space-y-5">
+      <div className="bg-white rounded-none shadow-sm border border-red-100 p-6 space-y-5">
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <div className="w-10 h-10 rounded-none bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
             <Trash2 size={20} className="text-red-500" />
           </div>
           <div>
@@ -149,7 +149,7 @@ export default function SettingsPage() {
             <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Select sections to clear</span>
             <button
               onClick={selectAll}
-              className="text-xs font-medium text-brand-accent hover:underline"
+              className="text-xs font-medium text-brand-black hover:underline"
             >
               {selectedSections.length === CLEAR_SECTIONS.length ? 'Deselect All' : 'Select All'}
             </button>
@@ -162,7 +162,7 @@ export default function SettingsPage() {
                 <button
                   key={section.key}
                   onClick={() => toggleSection(section.key)}
-                  className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${
+                  className={`text-left px-4 py-3 rounded-none border-2 transition-all ${
                     isSelected
                       ? 'border-red-300 bg-red-50/50'
                       : 'border-gray-100 bg-gray-50/50 hover:border-gray-200'
@@ -194,7 +194,7 @@ export default function SettingsPage() {
         {/* Confirmation */}
         {selectedSections.length > 0 && (
           <div className="space-y-3 pt-2 border-t border-gray-100">
-            <div className="flex items-center gap-2 p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <div className="flex items-center gap-2 p-3 bg-amber-50 rounded-none border border-amber-200">
               <AlertTriangle size={16} className="text-amber-600 flex-shrink-0" />
               <p className="text-xs text-amber-800">
                 You are about to permanently delete <strong>{selectedSections.length}</strong> section(s).
@@ -207,13 +207,13 @@ export default function SettingsPage() {
               value={confirmText}
               onChange={(e) => setConfirmText(e.target.value)}
               placeholder='Type "DELETE" to confirm'
-              className="w-full max-w-xs border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300 font-mono"
+              className="w-full max-w-xs border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300 font-mono"
             />
 
             <button
               onClick={handleClearDatabase}
               disabled={confirmText !== 'DELETE' || clearing}
-              className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-bold transition-all ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-none text-sm font-bold transition-all ${
                 confirmText === 'DELETE' && !clearing
                   ? 'bg-red-600 text-white hover:bg-red-700 shadow-sm'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -237,7 +237,7 @@ export default function SettingsPage() {
         {/* Result message */}
         {clearResult && (
           <div
-            className={`flex items-start gap-2 p-4 rounded-lg border ${
+            className={`flex items-start gap-2 p-4 rounded-none border ${
               clearResult.success
                 ? 'bg-green-50 border-green-200 text-green-800'
                 : 'bg-red-50 border-red-200 text-red-800'

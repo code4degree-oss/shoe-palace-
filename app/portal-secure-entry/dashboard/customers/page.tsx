@@ -58,13 +58,13 @@ export default function CustomersPage() {
             placeholder="Search by name or phone..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-none text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
           />
         </div>
         <select
           value={stateFilter}
           onChange={(e) => setStateFilter(e.target.value)}
-          className="bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+          className="bg-white border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
         >
           {states.map((s) => (
             <option key={s} value={s}>{s === 'all' ? 'All States' : s}</option>
@@ -72,7 +72,7 @@ export default function CustomersPage() {
         </select>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -90,7 +90,7 @@ export default function CustomersPage() {
                 <tr key={c.id} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-brand-accent/20 flex items-center justify-center shrink-0">
+                      <div className="w-9 h-9 rounded-full bg-brand-black/20 flex items-center justify-center shrink-0">
                         <span className="text-xs font-bold text-brand-dark">{c.name.charAt(0)}</span>
                       </div>
                       <span className="font-medium text-gray-900">{c.name}</span>

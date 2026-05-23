@@ -44,27 +44,27 @@ export default function RevenuePage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-none p-5 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-3">
-            <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-emerald-500 rounded-none flex items-center justify-center">
               <IndianRupee size={20} className="text-white" />
             </div>
           </div>
           <p className="text-2xl font-bold text-gray-900">₹{totalRevenue.toLocaleString()}</p>
           <p className="text-sm text-gray-500 mt-1">Total Revenue</p>
         </div>
-        <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-none p-5 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-3">
-            <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-blue-500 rounded-none flex items-center justify-center">
               <TrendingUp size={20} className="text-white" />
             </div>
           </div>
           <p className="text-2xl font-bold text-gray-900">{totalOrders}</p>
           <p className="text-sm text-gray-500 mt-1">Total Orders</p>
         </div>
-        <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-none p-5 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-3">
-            <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-purple-500 rounded-none flex items-center justify-center">
               <IndianRupee size={20} className="text-white" />
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function RevenuePage() {
       </div>
 
       {/* Date Range Filter */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 p-5">
         <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
           <Calendar size={16} />
           Custom Date Range
@@ -86,7 +86,7 @@ export default function RevenuePage() {
               type="date"
               value={dateFrom}
               onChange={(e) => setDateFrom(e.target.value)}
-              className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+              className="border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
             />
           </div>
           <div>
@@ -95,17 +95,17 @@ export default function RevenuePage() {
               type="date"
               value={dateTo}
               onChange={(e) => setDateTo(e.target.value)}
-              className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/30"
+              className="border border-gray-200 rounded-none px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-black/30"
             />
           </div>
-          <button className="bg-brand-accent text-brand-dark font-bold px-5 py-2.5 rounded-lg hover:bg-brand-accent-hover transition-colors text-sm">
+          <button className="bg-brand-black text-brand-dark font-bold px-5 py-2.5 rounded-none hover:bg-brand-black-hover transition-colors text-sm">
             Apply
           </button>
         </div>
       </div>
 
       {/* Revenue Chart (CSS bars) */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 p-5">
         <h3 className="text-sm font-bold text-gray-900 mb-6">Daily Revenue</h3>
         {filteredData.length > 0 ? (
           <div className="space-y-3">

@@ -1,17 +1,17 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cancellation Policy | Shoe Place Herbal Products',
-  description: 'Cancellation Policy of Shoe Place Herbal Products.',
+  title: 'Cancellation Policy | Shoe Place',
+  description: 'Cancellation Policy of Shoe Place.',
 };
 
 export default function CancellationPolicy() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8 font-sans text-gray-800">
-      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Cancellation Policy – Shoe Place Herbal Products</h1>
+      <h1 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-brand-dark">Cancellation Policy – Shoe Place</h1>
       
       <div className="space-y-6">
-        <p>At Shoe Place Herbal Products, we understand that customers may occasionally need to cancel an order.</p>
+        <p>At Shoe Place, we understand that customers may occasionally need to cancel an order.</p>
 
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Order Cancellation</h2>
         <ul className="list-disc pl-6 space-y-2">
@@ -44,7 +44,7 @@ export default function CancellationPolicy() {
             <li>Monday to Saturday – 10:00 AM to 5:00 PM</li>
             <li>Sunday – Closed</li>
           </ul>
-          <p><strong>Email:</strong> <a href="mailto:Shoe Placeherbalproducts@gmail.com" className="text-brand-blue hover:underline">Shoe Placeherbalproducts@gmail.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:support@shoeplace.com" className="text-brand-blue hover:underline">support@shoeplace.com</a></p>
           <p><strong>Phone:</strong> 7447201252 / 9270201252</p>
         </div>
       </div>
