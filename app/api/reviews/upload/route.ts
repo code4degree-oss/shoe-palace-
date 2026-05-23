@@ -22,6 +22,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid file type. Only JPG, PNG, WEBP, and GIF are allowed.' }, { status: 400 });
     }
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
     const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'reviews');
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });

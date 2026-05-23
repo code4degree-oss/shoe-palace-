@@ -39,6 +39,13 @@ export default function PrivacyPolicy() {
           <li>We do not store customers&apos; debit/credit card information on our servers.</li>
         </ul>
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Information Sharing</h2>
         <p>We do not sell, rent, or trade customer personal information to third parties.</p>
         <p>Information may only be shared with:</p>

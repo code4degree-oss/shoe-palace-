@@ -31,6 +31,13 @@ export function BannerSection({ banners = [] }: { banners?: BannerData[] }) {
   const btnText = mid.buttonText || 'Shop Now';
   const href = getLink(mid.linkedProductId);
 
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
   return (
     <section className="py-6 md:py-10">
       <div className="relative overflow-hidden bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#0f3460] mx-4 md:mx-16 lg:mx-24 rounded-2xl md:rounded-3xl">

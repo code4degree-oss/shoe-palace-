@@ -20,6 +20,13 @@ export async function GET(req: Request) {
       return NextResponse.json({ eligible: false });
     }
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
     // Check if customer has an order containing this product
     const orderItem = await prisma.orderItem.findFirst({
       where: {

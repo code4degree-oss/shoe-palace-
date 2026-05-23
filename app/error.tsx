@@ -16,6 +16,13 @@ export default function Error({
     console.error('Application Error:', error);
   }, [error]);
 
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
       <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 max-w-md w-full text-center">

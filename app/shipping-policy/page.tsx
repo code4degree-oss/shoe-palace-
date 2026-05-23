@@ -36,6 +36,13 @@ export default function ShippingPolicy() {
           </li>
         </ul>
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Shipping Charges</h2>
         <ul className="list-disc pl-6 space-y-2">
           <li>Shipping charges, if applicable, will be displayed during checkout before payment confirmation.</li>

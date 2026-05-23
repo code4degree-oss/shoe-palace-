@@ -19,6 +19,13 @@ export async function GET(request: NextRequest) {
       const totalSpent = c.orders.reduce((sum, order) => sum + order.total, 0);
       const lastOrder = c.orders.length > 0 ? new Date(c.orders[0].createdAt).toLocaleDateString() : 'Never';
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
       return {
         id: c.id,
         name: c.name,

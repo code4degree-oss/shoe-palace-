@@ -25,6 +25,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
     // Dynamic category pages
     const categories = await prisma.category.findMany({ select: { id: true } });
     const categoryPages: MetadataRoute.Sitemap = categories.map((c) => ({

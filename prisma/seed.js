@@ -81,6 +81,13 @@ async function main() {
       }
     })
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
     await prisma.product.create({
       data: {
         name: 'CloudWalk Everyday Sneakers',

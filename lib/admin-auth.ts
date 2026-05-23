@@ -10,6 +10,13 @@ if (!JWT_SECRET && process.env.NODE_ENV !== 'development' && process.env.NEXT_PH
  * Verify admin JWT token from cookies.
  * Returns the decoded payload if valid, or null if invalid/missing.
  */
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
 export function verifyAdminToken(request: NextRequest): { email: string; role: string } | null {
   try {
     const token = request.cookies.get('admin_token')?.value;

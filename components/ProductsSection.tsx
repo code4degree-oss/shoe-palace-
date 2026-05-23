@@ -116,6 +116,13 @@ function ScrollableRow({ title, subtitle, products }: { title: string; subtitle?
 
   if (products.length === 0) return null;
 
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
   return (
     <div>
       {/* Section Header */}

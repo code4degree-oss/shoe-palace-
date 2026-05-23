@@ -50,6 +50,13 @@ export async function POST(req: NextRequest) {
       variantPrices
     } = body;
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
     const baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
     const uniqueSuffix = Math.random().toString(36).substring(2, 6);
     const slug = `${baseSlug}-${uniqueSuffix}`;

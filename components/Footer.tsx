@@ -64,6 +64,13 @@ export function Footer() {
             </div>
           </div>
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
           {/* Shop */}
           <div>
             <h4 className="text-[11px] font-medium uppercase tracking-[0.2em] mb-6 text-white/50">Shop</h4>

@@ -31,6 +31,13 @@ export async function compressImage(file: File, maxWidth = 1920, maxHeight = 192
         canvas.width = width;
         canvas.height = height;
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
         const ctx = canvas.getContext('2d');
         if (!ctx) {
           return resolve(file); // fallback

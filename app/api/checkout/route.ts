@@ -75,6 +75,13 @@ export async function POST(req: Request) {
       where: { phone: customer.mobile }
     });
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
     if (dbCustomer) {
       dbCustomer = await prisma.customer.update({
         where: { id: dbCustomer.id },

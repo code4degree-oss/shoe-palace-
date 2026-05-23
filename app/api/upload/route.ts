@@ -24,6 +24,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'File size exceeds 10MB limit.' }, { status: 400 });
   }
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
   const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'banners');
   if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });

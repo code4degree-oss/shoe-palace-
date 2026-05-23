@@ -34,6 +34,13 @@ export function CategoriesSection({ categories = [] }: { categories?: Category[]
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
               
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">

@@ -35,6 +35,13 @@ export default function RevenuePage() {
   const totalOrders = filteredData.reduce((sum, d) => sum + d.orders, 0);
   const avgOrderValue = totalOrders > 0 ? Math.round(totalRevenue / totalOrders) : 0;
 
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
   return (
     <div className="space-y-6">
       <div>

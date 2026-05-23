@@ -80,6 +80,13 @@ export function CartDrawer() {
                         <X size={14} />
                       </button>
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
                       <div className="w-20 h-20 bg-gray-50 overflow-hidden flex-shrink-0">
                         <div className="relative w-full h-full">
                           <Image src={item.image} alt={item.name} fill className="object-cover" sizes="80px" />

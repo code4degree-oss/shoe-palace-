@@ -36,6 +36,13 @@ export default function CancellationPolicy() {
           </li>
         </ul>
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
         <h2 className="text-2xl font-serif font-semibold mt-8 mb-4 text-brand-dark">Contact for Cancellation</h2>
         <p>To request cancellation, customers can contact us during support hours.</p>
         <div className="bg-brand-light/20 p-6 rounded-lg mt-4 border border-brand-light">

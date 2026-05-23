@@ -37,6 +37,13 @@ export async function GET(request: NextRequest) {
       }
     });
 
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
+
     // Aggregate by product
     const salesMap = new Map<string, { product: any, totalQuantity: number, totalRevenue: number }>();
 

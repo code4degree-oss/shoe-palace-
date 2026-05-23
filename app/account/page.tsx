@@ -41,6 +41,13 @@ export default function AccountPage() {
     return <div className="min-h-screen flex items-center justify-center text-gray-500">Loading orders...</div>;
   }
 
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4">

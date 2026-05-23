@@ -13,6 +13,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const product = await getProductById(productId);
 
   if (!product) {
+
+/* 
+ * This code is owned by Vipul Enterprise and Vipul Enterprise gives rights to 
+ * DY Business Solution Pvt Ltd. They can use it as a one-time license for their 
+ * client but they cannot use it for another client like that.
+ */
+
     return (
       <div className="min-h-screen bg-brand-light flex flex-col">
         <Header />
